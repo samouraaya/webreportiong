@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+<script>
+
+       
+</script>
+	<style>
+        a:hover, a:active, a:focus
+        {
+            outline: 0;
+        }
+        button:focus
+        {
+            outline: 0;
+        }
+        .col-md-9, .col-md-3
+        {
+            padding: 0px;
+        }
+        .container
+        {
+            padding-right: 1px;
+            padding-left: 1px;
+        }
+        .center
+        {
+            width: 100px;
+        }
+        .font16
+        {
+            font-size: 16px;
+            color: Green;
+        }
+        .panel
+        {
+            box-shadow: 10px 10px 5px #888888;
+        }
+        .panel-body
+        {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .error-label
+        {
+            margin-top: 15px;
+        }
+        .alignright
+        {
+            text-align: right;
+            float: right;
+        }
+        .font18
+        {
+            font-size: 24px;
+            color: Green;
+            font-weight: bolder;
+        }
+		.form-control {
+  background-color: #FFFFFF;
+  background-image: none;
+  border-color: #94C120;
+  border-radius: 7px;
+  color: inherit;
+  display: block;
+  padding: 6px 12px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  width: 100%;
+  font-size: 14px;
+}
+
+.form-control:focus,
+.single-line:focus {
+  border-color: #00AB34;
+}
+
+	</style>
+<script>
+
+function prime_objectif_nb ()
+{
+var objnb = $('#objnb').val();
+var relnb = $('#relnb').val();
+var pernb=(relnb/objnb)*100;
+if (pernb>=125) {pernbprime=125;} else if (pernb>=115) {pernbprime=115;} else if (pernb>=95) {pernbprime=100;} else if (pernb>=80) {pernbprime=75;} else if (pernb>=60) {pernbprime=40;} else if (pernb<60) {pernbprime=0;}
+$('#pernb').val(pernbprime); 
+
+prime_total ();
+}
+
+function prime_objectif_vl ()
+{
+var objvl = $('#objvl').val();
+var relvl = $('#relvl').val();
+var pervl=(relvl/objvl)*100;
+if (pervl>=125) {pervlprime=125;} else if (pervl>=115) {pervlprime=115;} else if (pervl>=95) {pervlprime=100;} else if (pervl>=80) {pervlprime=75;} else if (pervl>=60) {pervlprime=40;} else if (pervl<60) {pervlprime=0;}
+$('#pervl').val(pervlprime); 
+
+prime_total ();
+}
+
+function prime_objectif_ech ()
+{
+var objech = $('#objech').val();
+var relech = $('#relech').val();
+var perech=(relech/objech)*100;
+if (perech>=95) {perechprime=100;} else if (perech>=90) {perechprime=75;} else if (perech>=85) {perechprime=50;} else if (perech>=80) {perechprime=20;} else {perechprime=0;}
+$('#perech').val(perechprime); 
+
+prime_total ();
+}
+
+function prime_objectif_pros ()
+{
+var objpros = $('#objpros').val();
+var relpros = $('#relpros').val();
+var perpros=(relpros/objpros)*100;
+
+$('#perpros').val(perpros); 
+
+prime_total ();
+
+}
+
+function prime_objectif_par10 ()
+{
+var perpar10 = $('#perpar10').val();
+var objech = $('#objech').val();
+
+if (objech<=25) {perprime10=100;} else { if (perpar10>7) {perprime10=0;}  else if (perpar10>5.5) {perprime10=25;} else if (perpar10>4) {perprime10=50;} else if (perpar10>2) {perprime10=75;} else if (perpar10>0) {perprime10=100;} else if (perpar10==0) {perprime10=120;}}
+$('#perprime10').val(perprime10); 
+
+prime_total ();
+
+}
+
+function prime_objectif_palier ()
+{
+var nbclt = $('#nbclt').val();
+
+if (nbclt>100) {palier=450;} else if (nbclt>76) {palier=375;} else if (nbclt>76) {palier=375;} else if (nbclt>51) {palier=300;} else if (nbclt>21) {palier=225;} else if (nbclt>0) {palier=150;} else if (nbclt==0) {palier=0;}
+$('#palier').val(palier); 
+
+prime_total ();
+
+}
+
+function prime_total ()
+{
+
+var pernb = $('#pernb').val()/100;
+var pervl = $('#pervl').val()/100;
+var perech = $('#perech').val()/100;
+var perpros = $('#perpros').val();
+var perprime10 = $('#perprime10').val()/100;
+var palier = $('#palier').val();
+
+if (perpros<100) { primetotal=0;} else { primetotal=((((pernb*0.3)+(pervl*0.5)+(perech*0.2))*palier)*perprime10);}
+
+$('#prime').text(primetotal);
+
+}
+</script>
+</head>
+
+<body>
+		<div class="col-sm-12">
+			<div  align="center" >
+        <div class="offer-container">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2>
+                        <i class="fa fa-calculator"></i>OUTIL DE CALCUL DE LA PRIME</h2>
+                </div>
+				
+                <div class="panel-body">
+				
+				<div class="col-sm-9">
+				<legend><h5>Objectif en nombre</h5></legend>
+				<form class="form-inline" role="form">
+				   <div class="form-group">
+					  <label for="name">objectifS</label>
+					  <input type="text" class="form-control" id="objnb" onchange="prime_objectif_nb()" placeholder="Enter l'objectif en nombre">
+				   </div>
+				   <div class="form-group">
+					  <label for="email">REALISATIONS</label>
+					  <input type="text" class="form-control" id="relnb" onchange="prime_objectif_nb()" placeholder="Enter la réalisation en nombre">
+				 </div>
+				   <div class="form-group">
+					  <label for="pwd">% Prime</label>
+					  <input type="text" class="form-control" id="pernb" readonly onchange="prime_objectif_nb()">
+				   </div>
+				</form>	
+                </div> 
+				
+				<div class="col-sm-9">
+				<legend><h5>Objectif en volume</h5></legend>
+				<form class="form-inline" role="form">
+				   <div class="form-group">
+					  <label for="name">objectifS</label>
+					  <input type="text" class="form-control" id="objvl" onchange="prime_objectif_vl()" placeholder="Enter l'objectif en volume">
+				   </div>
+				   <div class="form-group">
+					  <label for="email">REALISATIONS</label>
+					  <input type="text" class="form-control" id="relvl" onchange="prime_objectif_vl()" placeholder="Enter la réalisation en volume">
+				 </div>
+				   <div class="form-group">
+					  <label for="pwd">% Prime</label>
+					  <input type="text" class="form-control" id="pervl" readonly onchange="prime_objectif_vl()">
+				   </div>
+				</form>	
+                </div> 
+				
+				<div class="col-sm-3">
+				<legend><h2>Prime en DT</h2></legend>
+					<h1 id="prime" > </h1>
+                </div>
+				
+				<div class="col-sm-9">
+				<legend><h5>Respect des échéances</h5></legend>
+				<form class="form-inline" role="form">
+				   <div class="form-group">
+					  <label for="name">objectifS</label>
+					  <input type="text" class="form-control" id="objech" onchange="prime_objectif_ech()" placeholder="Enter l'échéances prévus">
+				   </div>
+				   <div class="form-group">
+					  <label for="email">REALISATIONS</label>
+					  <input type="text" class="form-control" id="relech" onchange="prime_objectif_ech()" placeholder="Enter l'échéances payés à temps">
+				 </div>
+				   <div class="form-group">
+					  <label for="pwd">% Prime</label>
+					  <input type="text" class="form-control" id="perech" onchange="prime_objectif_ech()" readonly >
+				   </div>
+				</form>	
+                </div>
+				
+				<div class="col-sm-9">
+				<legend><h5>Objectif de prospection</h5></legend>
+				<form class="form-inline" role="form">
+				   <div class="form-group">
+					  <label for="name">objectifS</label>
+					  <input type="text" class="form-control" id="objpros" onchange="prime_objectif_pros()" placeholder="Enter l'objectif en nombre">
+				   </div>
+				   <div class="form-group">
+					  <label for="email">REALISATIONS</label>
+					  <input type="text" class="form-control" id="relpros" onchange="prime_objectif_pros()" placeholder="Enter la réalisation en nombre">
+				 </div>
+				   <div class="form-group">
+					  <label for="pwd">% Prime</label>
+					  <input type="text" class="form-control" id="perpros" onchange="prime_objectif_pros()" readonly >
+				   </div>
+				</form>	
+                </div>
+				
+				<div class="col-sm-9">
+				<legend><h5>Facteur PAR 10</h5></legend>
+				<form class="form-inline" role="form">
+				   <div class="form-group">
+					  <label for="name">% PAR10</label>
+					  <input type="text" class="form-control" id="perpar10" onchange="prime_objectif_par10()" placeholder="% PAR 10">
+				   </div>
+				   <div class="form-group">
+					  <label for="pwd">Facteur du PAR 10</label>
+					  <input type="text" class="form-control" id="perprime10" readonly >
+				   </div>
+				</form>	
+                </div>
+				
+				<div class="col-sm-9">
+				<legend><h5>Palier</h5></legend>
+				<form class="form-inline" role="form">
+				   <div class="form-group">
+					  <label for="name">Nombre de clients actifs</label>
+					  <input type="text" class="form-control" id="nbclt" onchange="prime_objectif_palier()" placeholder="Enter le nombre des clients Actifs">
+				   </div>
+				   <div class="form-group">
+					  <label for="pwd">Palier</label>
+					  <input type="text" class="form-control" id="palier" readonly >
+				   </div>
+				</form>	
+                </div>
+				
+				
+				
+				
+                </div>
+            </div>
+        </div>
+    </div>
+
+		</div>
+      
+
+</body>
+</html>

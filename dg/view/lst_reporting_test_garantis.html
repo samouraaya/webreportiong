@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_reporting_test_garantis_';</script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+
+<div id="imrpim">
+<center><legend>Reporting test Garantis</legend></center>
+    <center><table id="jqGrid" border="1"></table></center></div>
+    <div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url:"../controller/api/reporting_test_garantis",
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'Agence',width:150,align:"center",name:"Agence"},
+			{ label: 'Client',width:150,align:"center",name:"Client"},
+			{ label: 'Type Credit', name: 'Type_Credit',width:150,align:"center"},
+			{ label: 'Date Date_decaissement', name: 'Date_Decaissement',align:"center",sorttype: "date", formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions: { 
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+			}}},
+			{ label: 'Montant decaissement', name: 'montant_decaissement',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Encours', name: 'Encours',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Garantie Entrepreneur', name: 'GarantieEntrepreneur',align:"center"},
+			{ label: 'Valeur Garantie Entrepreneur', name: 'ValeurGarantieEntrepreneur',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Garantie Aval Sal 1', name: 'GarantieAvalSal1',align:"center"},
+			{ label: 'Valeur Garantie Aval Sal 1', name: 'Valeur_GarantieAvalSal1',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'GarantieAvalSal2', name: 'GarantieAvalSal2',align:"center"},
+			{ label: 'Valeur Garantie Aval Sal 2', name: 'ValeurGarantieAvalSal2',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Garantie Vehicule 1', name: 'GarantieVehicule1',align:"center"},
+			{ label: 'Valeur Garantie Vehicule 1', name: 'ValeurGarantieVehicule1',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Garantie Vehicule 2', name: 'GarantieVehicule2',align:"center"},
+			{ label: 'Valeur Garantie Vehicule 2', name: 'ValeurGarantieVehicule2',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Garantie Stock Equip', name: 'GarantieStockEquip',align:"center"},
+			{ label: 'Valeur Garantie Stock Equip', name: 'ValeurGarantieStockEquip',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Garantie Aval Entp', name: 'GarantieAvalEntp',align:"center"},
+			{ label: 'Valeur Garantie Aval Entp', name: 'ValeurGarantieAvalEntp',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			
+			
+          
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: false
+
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700    
+    };
+						
+       setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+	   
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Frais Gage </p><br></div></div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<body> 
+<script>
+var names = sessionStorage.getItem("couleur");
+$('#rsm').val(names);
+</script>
+<div class="row1">
+	<br>
+    <legend> Changer Votre Mot de Passe</h2></center></legend>
+<br>
+<form class="form-horizontal" method="post" action="../../cnx/pwd.php">
+
+    <table class="table table-striped table-hover">
+
+        <tbody align='center'>
+            <tr>
+                <td><center><b>Nom d'utilisateur</b></center></td>
+        <td> 
+        <input type="text" class="form-control" placeholder="Nom d'utilisateur" id="rsm" readonly name="rsm" required="required"  >	
+        </td>
+        </tr>
+        <tr>
+            <td><center><b>Ancien mot de passe</b></center></td>
+        <td>
+            <input type="password" class="form-control" placeholder="Ancien mot de passe"   name="pwd1" required="required"  >	
+
+        </td>
+        </tr>
+        <tr>
+            <td><center><b>Nouveau mot de passe</b></center></td>
+        <td>
+            <input type="password" class="form-control" placeholder="Nouveau mot de passe"   name="pwd" required="required"  >	
+
+        </td>
+        </tr>
+        <tr>
+            <td><center><b>Confirmer nouveau mot de passe</b></center></td>
+        <td>
+            <input type="password" class="form-control" placeholder="Mot de passe"   name="pwd11" required="required"  >	
+        </td>
+        </tr>
+        <tr>
+            <td colspan='2'> <button class="btn btn-success" type="submit"  id="save">Enregistrer</button>
+                <button class="btn btn-danger" type="reset" id="save">Annuler</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+	<script>
+	var pass = sessionStorage.getItem("pwd");  $('#pass').val(pass);
+	</script>
+    <input type="hidden" id="pass" name="currentpwd"/>
+</form>
+</div>
+</body> 
+</html>

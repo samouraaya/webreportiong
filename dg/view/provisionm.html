@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script type="text/javascript" src="../../js/provision_2017.js"></script>
+<!--<script type="text/javascript" src="../../js/fn_totaux_prov.js"></script>-->
+
+<style>
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+	.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:16px;
+}
+</style>
+</head>
+<body bgcolor="#DCDCDC">
+		
+		<div class="col-md-12">
+		<div class="col-md-9"><legend>Etat Des Provision Mois dernier</legend>
+		</div>
+		</div>
+		<div class="col-md-12">
+						<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onClick ="$('#table').tableExport({type:'excel',escape:'false',tableName:'Provision_'.concat(new Date().getFullYear()).concat('_').concat(new Date().getMonth()+1).concat('_').concat(new Date().getDate())});" width='24px'> Excel</a>
+						</li>	
+						
+						</div>	
+		<table class="table table-bordered" id="table">
+		<tr>
+		<td width="11%"></td>
+		<td width="12%"></td>
+		<td bgcolor="#B0CC99" width="11%"><center>Taux de provision ACM</center></td>
+		<td  bgcolor="#B0CC99" width="11%"><center>Taux de provision ADVANS</center></td>
+		<td  bgcolor="#B0CC99" width="11%"><center>Nombre de client</center></td>
+		<td  bgcolor="#B0CC99" width="11%"><center>PORTEFEUILLE</center></td>
+		<td  bgcolor="#B0CC99" width="11%"><center>Provision ACM</center></td>
+		<td  bgcolor="#B0CC99" width="11%"><center>Provision ADVANS</center></td>
+		<td  bgcolor="#B0CC99" width="11%"><center>Provision différée</center></td>
+		</tr>
+		
+		<!--Begin Total ADVANS-->
+		
+		<tr>
+		<td width="11%">Total</td>
+		<td width="11%">SAIN (0.5 %)</td>
+		<td width="11%"><center>0.00%</center></td>
+		<td width="11%"><center>0.50%</center></td>
+		<td id="Sainnb" width="11%"><center></center></td>
+		<td id="Sain" width="11%"><center></center></td>
+		<td id="provacmsain" width="11%"><center></center></td>
+		<td id="provadvtnsain" width="11%"><center></center></td>
+		<td id="provdiffsain" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 1 et 30 jours (10 %)</td>
+		<td  width="11%"><center>10%</center></td>
+		<td   width="11%"><center>10%</center></td>
+		<td id="PAR0nb" width="11%"><center></center></td>
+		<td id="PAR0" width="11%"><center></center></td>
+		<td id="provacmpar0" width="11%"><center></center></td>
+		<td id="provadvtnpar0" width="11%"><center></center></td>
+		<td id="provdiffpar0" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 31 et 60 jours (40 %)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>40%</center></td>
+		<td id="nbPAR30" width="11%"><center></center></td>
+		<td id="PAR30" width="11%"><center></center></td>
+		<td id="provacmpar30" width="11%"><center></center></td>
+		<td id="provadvtnpar30" width="11%"><center></center></td>
+		<td id="provdiffpar30" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 61 et 90 jours (70 %)</td>
+		<td  width="11%"><center>50%</center></td>
+		<td   width="11%"><center>70%</center></td>
+		<td id="PAR60nb" width="11%"><center></center></td>
+		<td id="PAR60" width="11%"><center></center></td>
+		<td id="provacmpar60" width="11%"><center></center></td>
+		<td id="provadvtnpar60" width="11%"><center></center></td>
+		<td id="provdiffpar60" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 91 et 120 jours (100 %)</td>
+		<td  width="11%"><center>75%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR90nb" width="11%"><center></center></td>
+		<td id="PAR90" width="11%"><center></center></td>
+		<td id="provacmpar90" width="11%"><center></center></td>
+		<td id="provadvtnpar90" width="11%"><center></center></td>
+		<td id="provdiffpar90" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 121 et 180 jours (100 %)</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR120nb" width="11%"><center></center></td>
+		<td id="PAR120" width="11%"><center></center></td>
+		<td id="provacmpar120" width="11%"><center></center></td>
+		<td id="provadvtnpar120" width="11%"><center></center></td>
+		<td id="provdiffpar120" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">>180 jours</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR180nb" width="11%"><center></center></td>
+		<td id="PAR180" width="11%"><center></center></td>
+		<td id="provacmpar180" width="11%"><center></center></td>
+		<td id="provadvtnpar180" width="11%"><center></center></td>
+		<td id="provdiffpar180" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Sain (20%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>20%</center></td>
+		<td id="SainRESnb" width="11%"><center></center></td>
+		<td id="SainRES" width="11%"><center></center></td>
+		<td id="provacmsainres" width="11%"><center></center></td>
+		<td id="provadvtnsainres" width="11%"><center></center></td>
+		<td id="provdiffsainres" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Entre 1 et 30 jours (50%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>50%</center></td>
+		<td id="nbPAR0" width="11%"><center></center></td>
+		<td id="PAR0RES" width="11%"><center></center></td>
+		<td id="provacmPAR0res" width="11%"><center></center></td>
+		<td id="provadvtnPAR0res" width="11%"><center></center></td>
+		<td id="provdiffPAR0res" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré >= 31 jours (100%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR30RESnb" width="11%"><center></center></td>
+		<td id="PAR30RES" width="11%"><center></center></td>
+		<td id="provacmPAR30res" width="11%"><center></center></td>
+		<td id="provadvtnPAR30res" width="11%"><center></center></td>
+		<td id="provdiffPAR30res" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td bgcolor="#B0CC99" width="11%"></td>
+		<td bgcolor="#B0CC99" width="11%">PORTEFEUILLE TOTAL</td>
+		<td bgcolor="#B0CC99" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99"  width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalnb" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalprovacm" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproadvntn" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalprovdiff" width="11%"><center></center></td>
+		</tr>
+		
+		<!--End Total ADVANS-->
+		
+		<!--Begin 501 ADVANS-->
+		
+		<tr>
+		<td width="11%">501</td>
+		<td width="11%">SAIN (0.5 %)</td>
+		<td width="11%"><center>0.00%</center></td>
+		<td width="11%"><center>0.50%</center></td>
+		<td id="Sain501nb" width="11%"><center></center></td>
+		<td id="Sain501" width="11%"><center></center></td>
+		<td id="provacmsain501" width="11%"><center></center></td>
+		<td id="provadvtnsain501" width="11%"><center></center></td>
+		<td id="provdiffsain501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 1 et 30 jours (10 %)</td>
+		<td  width="11%"><center>10%</center></td>
+		<td   width="11%"><center>10%</center></td>
+		<td id="PAR0501nb" width="11%"><center></center></td>
+		<td id="PAR0501" width="11%"><center></center></td>
+		<td id="provacmpar0501" width="11%"><center></center></td>
+		<td id="provadvtnpar0501" width="11%"><center></center></td>
+		<td id="provdiffpar0501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 31 et 60 jours (40 %)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>40%</center></td>
+		<td id="PAR30501nb" width="11%"><center></center></td>
+		<td id="PAR30501" width="11%"><center></center></td>
+		<td id="provacmpar30501" width="11%"><center></center></td>
+		<td id="provadvtnpar30501" width="11%"><center></center></td>
+		<td id="provdiffpar30501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 61 et 90 jours (70 %)</td>
+		<td  width="11%"><center>50%</center></td>
+		<td   width="11%"><center>70%</center></td>
+		<td id="PAR60501nb" width="11%"><center></center></td>
+		<td id="PAR60501" width="11%"><center></center></td>
+		<td id="provacmpar60501" width="11%"><center></center></td>
+		<td id="provadvtnpar60501" width="11%"><center></center></td>
+		<td id="provdiffpar60501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 91 et 120 jours (100 %)</td>
+		<td  width="11%"><center>75%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR90501nb" width="11%"><center></center></td>
+		<td id="PAR90501" width="11%"><center></center></td>
+		<td id="provacmpar90501" width="11%"><center></center></td>
+		<td id="provadvtnpar90501" width="11%"><center></center></td>
+		<td id="provdiffpar90501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 121 et 180 jours (100 %)</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR120501nb" width="11%"><center></center></td>
+		<td id="PAR120501" width="11%"><center></center></td>
+		<td id="provacmpar120501" width="11%"><center></center></td>
+		<td id="provadvtnpar120501" width="11%"><center></center></td>
+		<td id="provdiffpar120501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">>180 jours</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR180501nb" width="11%"><center></center></td>
+		<td id="PAR180501" width="11%"><center></center></td>
+		<td id="provacmpar180501" width="11%"><center></center></td>
+		<td id="provadvtnpar180501" width="11%"><center></center></td>
+		<td id="provdiffpar180501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Sain (20%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>20%</center></td>
+		<td id="SainRES501nb" width="11%"><center></center></td>
+		<td id="SainRES501" width="11%"><center></center></td>
+		<td id="provacmsainres501" width="11%"><center></center></td>
+		<td id="provadvtnsainres501" width="11%"><center></center></td>
+		<td id="provdiffsainres501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Entre 1 et 30 jours (50%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>50%</center></td>
+		<td id="PAR0RES501nb" width="11%"><center></center></td>
+		<td id="PAR0RES501" width="11%"><center></center></td>
+		<td id="provacmpar0res501" width="11%"><center></center></td>
+		<td id="provadvtnpar0res501" width="11%"><center></center></td>
+		<td id="provdiffpar0res501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré >= 31 jours (100%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR30RES501nb" width="11%"><center></center></td>
+		<td id="PAR30RES501" width="11%"><center></center></td>
+		<td id="provacmpar30res501" width="11%"><center></center></td>
+		<td id="provadvtnpar30res501" width="11%"><center></center></td>
+		<td id="provdiffpar30res501" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td bgcolor="#B0CC99" width="11%"></td>
+		<td bgcolor="#B0CC99" width="11%">PORTEFEUILLE TOTAL</td>
+		<td bgcolor="#B0CC99" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99"  width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total501nb" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total501" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproacm501" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproadvntn501" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="provdiffres501" width="11%"><center></center></td>
+		</tr>
+		
+		<!--End 501 ADVANS-->
+		
+		<!--Begin 511 ADVANS-->
+		
+		<tr>
+		<td width="11%">511</td>
+		<td width="11%">SAIN (0.5 %)</td>
+		<td width="11%"><center>0.00%</center></td>
+		<td width="11%"><center>0.50%</center></td>
+		<td id="Sain511nb" width="11%"><center></center></td>
+		<td id="Sain511" width="11%"><center></center></td>
+		<td id="provacmsain511" width="11%"><center></center></td>
+		<td id="provadvtnsain511" width="11%"><center></center></td>
+		<td id="provdiffsain511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 1 et 30 jours (10 %)</td>
+		<td  width="11%"><center>10%</center></td>
+		<td   width="11%"><center>10%</center></td>
+		<td id="PAR0511nb" width="11%"><center></center></td>
+		<td id="PAR0511" width="11%"><center></center></td>
+		<td id="provacmpar0511" width="11%"><center></center></td>
+		<td id="provadvtnpar0511" width="11%"><center></center></td>
+		<td id="provdiffpar0511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 31 et 60 jours (40 %)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>40%</center></td>
+		<td id="PAR30511nb" width="11%"><center></center></td>
+		<td id="PAR30511" width="11%"><center></center></td>
+		<td id="provacmpar30511" width="11%"><center></center></td>
+		<td id="provadvtnpar30511" width="11%"><center></center></td>
+		<td id="provdiffpar30511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 61 et 90 jours (70 %)</td>
+		<td  width="11%"><center>50%</center></td>
+		<td   width="11%"><center>70%</center></td>
+		<td id="PAR60511nb" width="11%"><center></center></td>
+		<td id="PAR60511" width="11%"><center></center></td>
+		<td id="provacmpar60511" width="11%"><center></center></td>
+		<td id="provadvtnpar60511" width="11%"><center></center></td>
+		<td id="provdiffpar60511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 91 et 120 jours (100 %)</td>
+		<td  width="11%"><center>75%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR90511nb" width="11%"><center></center></td>
+		<td id="PAR90511" width="11%"><center></center></td>
+		<td id="provacmpar90511" width="11%"><center></center></td>
+		<td id="provadvtnpar90511" width="11%"><center></center></td>
+		<td id="provdiffpar90511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 121 et 180 jours (100 %)</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR120511nb" width="11%"><center></center></td>
+		<td id="PAR120511" width="11%"><center></center></td>
+		<td id="provacmpar120511" width="11%"><center></center></td>
+		<td id="provadvtnpar120511" width="11%"><center></center></td>
+		<td id="provdiffpar120511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">>180 jours</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR180511nb" width="11%"><center></center></td>
+		<td id="PAR180511" width="11%"><center></center></td>
+		<td id="provacmpar180511" width="11%"><center></center></td>
+		<td id="provadvtnpar180511" width="11%"><center></center></td>
+		<td id="provdiffpar180511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Sain (20%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>20%</center></td>
+		<td id="SainRES511nb" width="11%"><center></center></td>
+		<td id="SainRES511" width="11%"><center></center></td>
+		<td id="provacmsainres511" width="11%"><center></center></td>
+		<td id="provadvtnsainres511" width="11%"><center></center></td>
+		<td id="provdiffsainres511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Entre 1 et 30 jours (50%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>50%</center></td>
+		<td id="PAR0RES511nb" width="11%"><center></center></td>
+		<td id="PAR0RES511" width="11%"><center></center></td>
+		<td id="provacmpar0res511" width="11%"><center></center></td>
+		<td id="provadvtnpar0res511" width="11%"><center></center></td>
+		<td id="provdiffpar0res511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré >= 31 jours (100%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR30RES511nb" width="11%"><center></center></td>
+		<td id="PAR30RES511" width="11%"><center></center></td>
+		<td id="provacmpar30res511" width="11%"><center></center></td>
+		<td id="provadvtnpar30res511" width="11%"><center></center></td>
+		<td id="provdiffpar30res511" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td bgcolor="#B0CC99" width="11%"></td>
+		<td bgcolor="#B0CC99" width="11%">PORTEFEUILLE TOTAL</td>
+		<td bgcolor="#B0CC99" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99"  width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total511nb" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total511" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproacm511" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproadvntn511" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="provdiffres511" width="11%"><center></center></td>
+		</tr>
+		
+		<!--End 511 ADVANS-->
+		
+		<!--Begin 521 ADVANS-->
+		
+		<tr>
+		<td width="11%">521</td>
+		<td width="11%">SAIN (0.5 %)</td>
+		<td width="11%"><center>0.00%</center></td>
+		<td width="11%"><center>0.50%</center></td>
+		<td id="Sain521nb" width="11%"><center></center></td>
+		<td id="Sain521" width="11%"><center></center></td>
+		<td id="provacmsain521" width="11%"><center></center></td>
+		<td id="provadvtnsain521" width="11%"><center></center></td>
+		<td id="provdiffsain521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 1 et 30 jours (10 %)</td>
+		<td  width="11%"><center>10%</center></td>
+		<td   width="11%"><center>10%</center></td>
+		<td id="PAR0521nb" width="11%"><center></center></td>
+		<td id="PAR0521" width="11%"><center></center></td>
+		<td id="provacmpar0521" width="11%"><center></center></td>
+		<td id="provadvtnpar0521" width="11%"><center></center></td>
+		<td id="provdiffpar0521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 31 et 60 jours (40 %)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>40%</center></td>
+		<td id="PAR30521nb" width="11%"><center></center></td>
+		<td id="PAR30521" width="11%"><center></center></td>
+		<td id="provacmpar30521" width="11%"><center></center></td>
+		<td id="provadvtnpar30521" width="11%"><center></center></td>
+		<td id="provdiffpar30521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 61 et 90 jours (70 %)</td>
+		<td  width="11%"><center>50%</center></td>
+		<td   width="11%"><center>70%</center></td>
+		<td id="PAR60521nb" width="11%"><center></center></td>
+		<td id="PAR60521" width="11%"><center></center></td>
+		<td id="provacmpar60521" width="11%"><center></center></td>
+		<td id="provadvtnpar60521" width="11%"><center></center></td>
+		<td id="provdiffpar60521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 91 et 120 jours (100 %)</td>
+		<td  width="11%"><center>75%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR90521nb" width="11%"><center></center></td>
+		<td id="PAR90521" width="11%"><center></center></td>
+		<td id="provacmpar90521" width="11%"><center></center></td>
+		<td id="provadvtnpar90521" width="11%"><center></center></td>
+		<td id="provdiffpar90521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 121 et 180 jours (100 %)</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR120521nb" width="11%"><center></center></td>
+		<td id="PAR120521" width="11%"><center></center></td>
+		<td id="provacmpar120521" width="11%"><center></center></td>
+		<td id="provadvtnpar120521" width="11%"><center></center></td>
+		<td id="provdiffpar120521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">>180 jours</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR180521nb" width="11%"><center></center></td>
+		<td id="PAR180521" width="11%"><center></center></td>
+		<td id="provacmpar180521" width="11%"><center></center></td>
+		<td id="provadvtnpar180521" width="11%"><center></center></td>
+		<td id="provdiffpar180521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Sain (20%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>20%</center></td>
+		<td id="SainRES521nb" width="11%"><center></center></td>
+		<td id="SainRES521" width="11%"><center></center></td>
+		<td id="provacmsainres521" width="11%"><center></center></td>
+		<td id="provadvtnsainres521" width="11%"><center></center></td>
+		<td id="provdiffsainres521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Entre 1 et 30 jours (50%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>50%</center></td>
+		<td id="PAR0RES521nb" width="11%"><center></center></td>
+		<td id="PAR0RES521" width="11%"><center></center></td>
+		<td id="provacmpar0res521" width="11%"><center></center></td>
+		<td id="provadvtnpar0res521" width="11%"><center></center></td>
+		<td id="provdiffpar0res521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré >= 31 jours (100%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR30RES521nb" width="11%"><center></center></td>
+		<td id="PAR30RES521" width="11%"><center></center></td>
+		<td id="provacmpar30res521" width="11%"><center></center></td>
+		<td id="provadvtnpar30res521" width="11%"><center></center></td>
+		<td id="provdiffpar30res521" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td bgcolor="#B0CC99" width="11%"></td>
+		<td bgcolor="#B0CC99" width="11%">PORTEFEUILLE TOTAL</td>
+		<td bgcolor="#B0CC99" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99"  width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total521nb" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total521" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproacm521" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproadvntn521" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="provdiffres521" width="11%"><center></center></td>
+		</tr>
+		
+		<!--End 521 ADVANS-->
+		
+		<!--Begin 531 ADVANS-->
+		
+		<tr>
+		<td width="11%">531</td>
+		<td width="11%">SAIN (0.5 %)</td>
+		<td width="11%"><center>0.00%</center></td>
+		<td width="11%"><center>0.50%</center></td>
+		<td id="Sain531nb" width="11%"><center></center></td>
+		<td id="Sain531" width="11%"><center></center></td>
+		<td id="provacmsain531" width="11%"><center></center></td>
+		<td id="provadvtnsain531" width="11%"><center></center></td>
+		<td id="provdiffsain531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 1 et 30 jours (10 %)</td>
+		<td  width="11%"><center>10%</center></td>
+		<td   width="11%"><center>10%</center></td>
+		<td id="PAR0531nb" width="11%"><center></center></td>
+		<td id="PAR0531" width="11%"><center></center></td>
+		<td id="provacmpar0531" width="11%"><center></center></td>
+		<td id="provadvtnpar0531" width="11%"><center></center></td>
+		<td id="provdiffpar0531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 31 et 60 jours (40 %)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>40%</center></td>
+		<td id="PAR30531nb" width="11%"><center></center></td>
+		<td id="PAR30531" width="11%"><center></center></td>
+		<td id="provacmpar30531" width="11%"><center></center></td>
+		<td id="provadvtnpar30531" width="11%"><center></center></td>
+		<td id="provdiffpar30531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 61 et 90 jours (70 %)</td>
+		<td  width="11%"><center>50%</center></td>
+		<td   width="11%"><center>70%</center></td>
+		<td id="PAR60531nb" width="11%"><center></center></td>
+		<td id="PAR60531" width="11%"><center></center></td>
+		<td id="provacmpar60531" width="11%"><center></center></td>
+		<td id="provadvtnpar60531" width="11%"><center></center></td>
+		<td id="provdiffpar60531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 91 et 120 jours (100 %)</td>
+		<td  width="11%"><center>75%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR90531nb" width="11%"><center></center></td>
+		<td id="PAR90531" width="11%"><center></center></td>
+		<td id="provacmpar90531" width="11%"><center></center></td>
+		<td id="provadvtnpar90531" width="11%"><center></center></td>
+		<td id="provdiffpar90531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 121 et 180 jours (100 %)</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR120531nb" width="11%"><center></center></td>
+		<td id="PAR120531" width="11%"><center></center></td>
+		<td id="provacmpar120531" width="11%"><center></center></td>
+		<td id="provadvtnpar120531" width="11%"><center></center></td>
+		<td id="provdiffpar120531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">>180 jours</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR180531nb" width="11%"><center></center></td>
+		<td id="PAR180531" width="11%"><center></center></td>
+		<td id="provacmpar180531" width="11%"><center></center></td>
+		<td id="provadvtnpar180531" width="11%"><center></center></td>
+		<td id="provdiffpar180531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Sain (20%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>20%</center></td>
+		<td id="SainRES531nb" width="11%"><center></center></td>
+		<td id="SainRES531" width="11%"><center></center></td>
+		<td id="provacmsainres531" width="11%"><center></center></td>
+		<td id="provadvtnsainres531" width="11%"><center></center></td>
+		<td id="provdiffsainres531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Entre 1 et 30 jours (50%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>50%</center></td>
+		<td id="PAR0RES531nb" width="11%"><center></center></td>
+		<td id="PAR0RES531" width="11%"><center></center></td>
+		<td id="provacmpar0res531" width="11%"><center></center></td>
+		<td id="provadvtnpar0res531" width="11%"><center></center></td>
+		<td id="provdiffpar0res531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré >= 31 jours (100%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR30RES531nb" width="11%"><center></center></td>
+		<td id="PAR30RES531" width="11%"><center></center></td>
+		<td id="provacmpar30res531" width="11%"><center></center></td>
+		<td id="provadvtnpar30res531" width="11%"><center></center></td>
+		<td id="provdiffpar30res531" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td bgcolor="#B0CC99" width="11%"></td>
+		<td bgcolor="#B0CC99" width="11%">PORTEFEUILLE TOTAL</td>
+		<td bgcolor="#B0CC99" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99"  width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total531nb" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total531" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproacm531" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproadvntn531" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="provdiffres531" width="11%"><center></center></td>
+		</tr>
+		
+		<!--End 531 ADVANS-->
+		
+		<!--Begin 541 ADVANS-->
+		<tr>
+		<td width="11%">541</td>
+		<td width="11%">SAIN (0.5 %)</td>
+		<td width="11%"><center>0.00%</center></td>
+		<td width="11%"><center>0.50%</center></td>
+		<td id="Sain541nb" width="11%"><center></center></td>
+		<td id="Sain541" width="11%"><center></center></td>
+		<td id="provacmsain541" width="11%"><center></center></td>
+		<td id="provadvtnsain541" width="11%"><center></center></td>
+		<td id="provdiffsain541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 1 et 30 jours (10 %)</td>
+		<td  width="11%"><center>10%</center></td>
+		<td   width="11%"><center>10%</center></td>
+		<td id="PAR0541nb" width="11%"><center></center></td>
+		<td id="PAR0541" width="11%"><center></center></td>
+		<td id="provacmpar0541" width="11%"><center></center></td>
+		<td id="provadvtnpar0541" width="11%"><center></center></td>
+		<td id="provdiffpar0541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 31 et 60 jours (40 %)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>40%</center></td>
+		<td id="PAR30541nb" width="11%"><center></center></td>
+		<td id="PAR30541" width="11%"><center></center></td>
+		<td id="provacmpar30541" width="11%"><center></center></td>
+		<td id="provadvtnpar30541" width="11%"><center></center></td>
+		<td id="provdiffpar30541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 61 et 90 jours (70 %)</td>
+		<td  width="11%"><center>50%</center></td>
+		<td   width="11%"><center>70%</center></td>
+		<td id="PAR60541nb" width="11%"><center></center></td>
+		<td id="PAR60541" width="11%"><center></center></td>
+		<td id="provacmpar60541" width="11%"><center></center></td>
+		<td id="provadvtnpar60541" width="11%"><center></center></td>
+		<td id="provdiffpar60541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 91 et 120 jours (100 %)</td>
+		<td  width="11%"><center>75%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR90541nb" width="11%"><center></center></td>
+		<td id="PAR90541" width="11%"><center></center></td>
+		<td id="provacmpar90541" width="11%"><center></center></td>
+		<td id="provadvtnpar90541" width="11%"><center></center></td>
+		<td id="provdiffpar90541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Entre 121 et 180 jours (100 %)</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR120541nb" width="11%"><center></center></td>
+		<td id="PAR120541" width="11%"><center></center></td>
+		<td id="provacmpar120541" width="11%"><center></center></td>
+		<td id="provadvtnpar120541" width="11%"><center></center></td>
+		<td id="provdiffpar120541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">>180 jours</td>
+		<td  width="11%"><center>100%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR180541nb" width="11%"><center></center></td>
+		<td id="PAR180541" width="11%"><center></center></td>
+		<td id="provacmpar180541" width="11%"><center></center></td>
+		<td id="provadvtnpar180541" width="11%"><center></center></td>
+		<td id="provdiffpar180541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Sain (20%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>20%</center></td>
+		<td id="SainRES541nb" width="11%"><center></center></td>
+		<td id="SainRES541" width="11%"><center></center></td>
+		<td id="provacmsainres541" width="11%"><center></center></td>
+		<td id="provadvtnsainres541" width="11%"><center></center></td>
+		<td id="provdiffsainres541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré - Entre 1 et 30 jours (50%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>50%</center></td>
+		<td id="PAR0RES541nb" width="11%"><center></center></td>
+		<td id="PAR0RES541" width="11%"><center></center></td>
+		<td id="provacmpar0res541" width="11%"><center></center></td>
+		<td id="provadvtnpar0res541" width="11%"><center></center></td>
+		<td id="provdiffpar0res541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td width="11%"></td>
+		<td width="11%">Restructuré >= 31 jours (100%)</td>
+		<td  width="11%"><center>25%</center></td>
+		<td   width="11%"><center>100%</center></td>
+		<td id="PAR30RES541nb" width="11%"><center></center></td>
+		<td id="PAR30RES541" width="11%"><center></center></td>
+		<td id="provacmpar30res541" width="11%"><center></center></td>
+		<td id="provadvtnpar30res541" width="11%"><center></center></td>
+		<td id="provdiffpar30res541" width="11%"><center></center></td>
+		</tr>
+		
+		<tr>
+		<td bgcolor="#B0CC99" width="11%"></td>
+		<td bgcolor="#B0CC99" width="11%">PORTEFEUILLE TOTAL</td>
+		<td bgcolor="#B0CC99" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99"  width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total541nb" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Total541" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproacm541" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="Totalproadvntn541" width="11%"><center></center></td>
+		<td bgcolor="#B0CC99" id="provdiffres541" width="11%"><center></center></td>
+		</tr>
+		
+		<!--End 541 ADVANS-->
+		
+
+</table> 
+
+</div>
+</div>
+</div>
+
+	
+</body>
+</html>

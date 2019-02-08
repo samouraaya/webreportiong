@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_Liste_REC_Strategies_';</script> 
+
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script>   
+</head>
+
+<body>
+
+<div id="row1">
+<center><legend>Stratégies et Actions de Recouvrement  </legend></center>
+    <center><table id="jqGrid" border="1"></table></center>
+    <div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/liste_rec_strategie",
+		datatype: "json",
+		
+		 colModel: [
+		{ label: 'RIM', name: 'rim_no',sorttype:"string",align:"center"},
+			{ label: 'RSM du RIM', name: 'nom_prenom',sorttype:"string",align:"center"},
+			{ label: 'Nom ', name: 'nom',sorttype:"string",align:"center"},
+			{ label: 'Prénom ', name: 'prenom',sorttype:"string",align:"center"},
+			{ label: 'Agence LI', name: 'id_agence',sorttype:"integer",align:"center" },
+			{ label: 'Montant Echéance', name: 'mnt_echeance',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Date dernier paiement', name: 'create_dt',sorttype:"date",align:"center",searchoptions: {
+                            
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+			}},sorttype: "date", formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},align:"center"},
+			{ label: 'Montant Dernier paiement', name: 'Montant',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Stratégie', name: 'desc_note',sorttype:"string",align:"center"},
+			{ label: 'Statut LI', name: 'statut',sorttype:"string",align:"center"},
+			{ label: 'Date dernier insertion', name: 'date_insertion',sorttype:"date",align:"center",searchoptions: {
+                            
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+			}},sorttype: "date", formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},align:"center"}
+			
+			
+			         
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: false,
+		
+            /*    loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "Mt_Ech", false, "sum");
+						sum2 = $self.jqGrid("getCol", "échéancecouverte", false, "sum");
+						
+						sum1=parseFloat(sum1);
+						
+						sum2=parseFloat(sum2);
+                    $self.jqGrid("footerData", "set", {Tél_client: "Total en TND:", Mt_Ech: sum1});
+					$self.jqGrid("footerData", "set", {échéancecouverte: sum2});
+                }*/
+
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700    
+    };
+		 setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+	    
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Stratégies et Actions de Recouvrement </p><br></div></div>
+
+ 
+</body>
+</html>

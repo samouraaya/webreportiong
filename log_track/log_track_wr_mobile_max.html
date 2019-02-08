@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <script type="text/ecmascript" src="js/jquery-1.11.0.min.js"></script> 
+    <script type="text/ecmascript" src="js/i18n/grid.locale-en.js"></script>
+    <script type="text/ecmascript" src="js/jquery.jqGrid.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+
+    
+	<script type="text/javascript" src="../js/xlsx.core.min.js"></script>
+	<script type="text/javascript" src="../js/Blob.js"></script>
+	<script type="text/javascript" src="../js/FileSaver.js"></script>
+	<script type="text/javascript" src="../js/Export2Excel.js"></script>
+	<script type="text/javascript" src="../js/exportexcel.js"></script>
+	<script type="text/javascript"  src="../js/tableExport1.js"></script>
+	<script>var s='6_DOC_Coordonnees_CLT_';</script>
+	
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid-bootstrap.css" />    
+    <link rel="stylesheet" href="css/sweetalert.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/custom.css">
+    <meta charset="utf-8" />
+    <title>Liste Utilisateurs webreporting Mobile</title>
+</head>
+<body>
+ <nav role="navigation" class="navbar navbar-default">
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ><a href="log_track_wr_mobile.html">Liste des connexions</a></li>
+                <li class="active"><a href="log_track_wr_mobile_max.html">Liste Nombre de connexions</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="col-md-12" id="container" style="padding-top:0px;" >
+
+<center><legend>Liste Utilisateurs webreporting Mobile Par derniere connexion</legend></center>
+<br><br>
+<div style="height:4%;">
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+			
+            $("#jqGrid").jqGrid({
+                url: 'log_track_wr_mobile_max.php',
+                mtype: "GET",
+				styleUI : 'Bootstrap',
+                datatype: "json",
+                colModel: [
+                    { label: 'Nom Utilisateur', name: 'name', key: true, width: 150,sorttype:"string",stype: "select", searchoptions:{dataUrl:'rsm.php'} },
+                    { label: 'Agence', name: 'agence', width: 150,sorttype:"string",stype: "select", searchoptions:{dataUrl:'branch.php'} },
+                    { label: 'Date & Heure de la dérniere connexion', name: 'connexion_time', width: 150 },
+					{ label: 'Date & Heure de 1er connexion', name: 'min', width: 150 },
+					{ label: 'Nombre de connexions', name: 'nb', width: 150 ,sorttype:'number'}
+                ],
+				viewrecords: true,
+                rowNum: 20,
+				autowidth: true,
+				loadonce: true,
+                height: 450,
+				rowNum: 10000000,
+                pager: "#jqGridPager"
+            });
+			$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false,view: false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700   
+    };
+		  setExportGrid('jqGrid','jqGridPager','Export');
+        });
+ 
+   </script>
+</div>
+    
+</body>
+</html>

@@ -1,0 +1,271 @@
+<html>
+<head>
+<script type="text/javascript" src="../../js/budget.js"></script>
+
+<script>
+ $(document).ajaxComplete(function(){
+	$.holdReady( true );
+	$.getScript('../../js/fn_totaux_budget.js');
+	$.holdReady( false );
+ });
+</script>
+<script type="text/javascript">
+/*CanvasJS.addColorSet("greenShades",
+                [
+                "#8FCF3C"
+                ]);
+var chart4 = new CanvasJS.Chart("chartContainer4",
+		{	colorSet: "#8FCF3C",
+
+		 axisY:{
+              valueFormatString: " # ###", 
+			  maximum: 600000
+            },
+
+			title:{
+				text: "Evolution de décaissement en TND Par Agence",
+				fontFamily: "arial black"
+			},  
+                        animationEnabled: false, 
+						exportEnabled: true,						
+			
+			data: [
+			{        
+				toolTipContent: "{y} TND",
+				type: "spline",
+				markerSize: 10,
+				name: "Agence 110",
+				showInLegend: true,
+				color: "rgba(143,207,60,.7)",
+				dataPoints: [
+				{label: "Janvier", y: 0},     
+				{label: "Février", y: 0},     
+				{label: "Mars", y: 0},     
+				{label: "Avril", y: 0},     
+				{label: "Mai", y: 0},     
+				{label: "Juin", y:0},     
+				{label: "Juillet", y:0},     
+				{label: "Aout", y:0},     
+				{label: "Septembre", y: 0},   
+				{label: "Octobre", y:0}, 
+				{label: "novembre", y: 0}, 				
+				{label: "Décembre", y:0}    
+				]
+			},
+{        
+				toolTipContent: "{y} TND",
+				type: "spline",
+				markerSize: 10,
+				name: "Agence 120",
+		
+				showInLegend: true,
+				color: "rgba(69,107,53,.7)",
+				dataPoints: [
+				{label: "Janvier", y: 0},     
+				{label: "Février", y: 0},     
+				{label: "Mars", y: 0},     
+				{label: "Avril", y: 0},     
+				{label: "Mai", y: 0},     
+				{label: "Juin", y:0},     
+				{label: "Juillet", y:0},     
+				{label: "Aout", y:0},     
+				{label: "Septembre", y: 0},   
+				{label: "Octobre", y:0}, 
+				{label: "novembre", y: 0}, 				
+				{label: "Décembre", y:0}     
+				]
+			},  	
+{        
+				toolTipContent: "{y} TND",
+				type: "spline",
+				markerSize: 10,
+				name: "Agence 130",
+				showInLegend: true,
+				color: "rgba(0,47,47,.7)",
+				dataPoints: [
+				{label: "Janvier", y: 0},     
+				{label: "Février", y: 0},     
+				{label: "Mars", y: 0},     
+				{label: "Avril", y: 0},     
+				{label: "Mai", y: 0},     
+				{label: "Juin", y:0},     
+				{label: "Juillet", y:0},     
+				{label: "Aout", y:0},     
+				{label: "Septembre", y: 0},   
+				{label: "Octobre", y:0}, 
+				{label: "novembre", y: 0}, 				
+				{label: "Décembre", y:0}      
+				]
+			}			
+			],
+			  legend:{
+            cursor:"pointer",
+			fontSize: 20,
+            itemclick: function(e){
+              if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+              	e.dataSeries.visible = false;
+              }
+              else {
+                e.dataSeries.visible = true;
+              }
+            	chart4.render();
+            }
+          },
+			
+		});
+
+chart4.render();
+*/
+</script>
+<style>
+a.canvasjs-chart-credit{visibility: hidden;}
+
+
+    .chart-legend, .bar-legend, .line-legend, .pie-legend, .radar-legend,
+.polararea-legend, .doughnut-legend {
+    list-style-type: none;
+    margin-top: 5px;
+    text-align: center
+}
+
+.chart-legend li, .bar-legend li, .line-legend li, .pie-legend li, .radar-legend li,
+.polararea-legend li, .doughnut-legend li {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    padding: 2px 8px 2px 28px;
+    font-size: smaller;
+    cursor: default
+}
+
+.chart-legend li span, .bar-legend li span, .line-legend li span, .pie-legend li span,
+.radar-legend li span, .polararea-legend li span, .doughnut-legend li span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px
+}
+
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:16px;
+}
+
+  </style>
+        <title>Reporting budgétaire - MANAGEMENT</title>
+</head>
+
+
+
+<body>
+<legend> <span class="glyphicon glyphicon-bitcoin" ></span> Reporting budgétaire</legend>
+<table id="listedemande" class="table table-striped" >
+<thead>
+<th width="200px"></th>
+<th width="100px" bgcolor="#98DB9C"><center>Agence 100</center></th>
+<th width="100px" bgcolor="#98DB9C"><center>Agence 110</center></th>
+<th width="100px" bgcolor="#98DB9C"><center>Agence 120</center></th>
+<th width="100px" bgcolor="#98DB9C"><center>Agence 130</center></th>
+<th width="100px" bgcolor="#98DB9C"><center>TOTAL</center></th>
+<th width="150px" bgcolor="#98DB9C"><center>BUDGET (Fin du mois)</center></th>
+<th width="150px" bgcolor="#98DB9C"><center>Atteinte de l'objectif</center></th>
+</thead>
+<tbody>
+
+<tr>
+
+<td  bgcolor="#98DB9C" >Nombre de décaissement (Depuis début année)</td>
+<td><center>-</center></td>
+<td id="dectot110" class="center"><center></center></td>
+<td id="dectot120" class="center"><center></center></td>
+<td id="dectot130" class="center"><center></center></td>
+<td id="totalnbdec" class="center"><center></center></td>
+<td id="totalnbobject" class="center"><center></center></td>
+<td id="pernbtot" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C">Volume de décaissement  (Depuis début année)</td>
+<td><center>-</center></td>
+<td id="vldectot110" class="center"><center></center></td>
+<td id="vldectot120" class="center"><center></center></td>
+<td id="vldectot130" class="center"><center></center></td>
+<td id="vldectot" 	class="center"><center></center></td>
+<td id="totalvlobject" class="center"><center></center></td>
+<td id="pervltot" class="center"><center></center></td>
+</tr>
+<tr>
+
+<td  bgcolor="#98DB9C">Nombre de décaissement (mois en cours)</td>
+<td><center>-</center></td>
+<td id="dectot110m" class="center"><center></center></td>
+<td id="dectot120m" class="center"><center></center></td>
+<td id="dectot130m" class="center"><center></center></td>
+<td id="dectotm" class="center"><center></center></td>
+<td id="totaldectotmobject" class="center"><center></center></td>
+<td id="perdecmnb" class="center"><center></center></td>
+</tr>
+<tr>
+
+<td  bgcolor="#98DB9C">Volume de décaissement (mois en cours)</td>
+<td><center>-</center></td>
+<td id="vldectot110m" class="center"><center></center></td>
+<td id="vldectot120m" class="center"><center></center></td>
+<td id="vldectot130m" class="center"><center></center></td>
+<td id="vldectotm" class="center"><center></center></td>
+<td id="totaldectotmobjectvl" class="center"><center></center></td>
+<td id="perdecmvl" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C">Volume de crédits en cours</td>
+<td id="entot100m" class="center"><center></center></td>
+<td id="entot110m" class="center"><center></center></td>
+<td id="entot120m" class="center"><center></center></td>
+<td id="entot130m" class="center"><center></center></td>
+<td id="totalendec" class="center"><center></center></td>
+<td id="totalendecobject" class="center"><center></center></td>
+<td id="perenc" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C">PAR 1 (%)</td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C">PAR 30 (%)</td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C">PAR 90 (%)</td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+<td><center></center></td>
+</tr>
+</tbody>
+</table>
+
+<div class="col-sm-12"><div id="chartContainer4" style="height: 300px; width: 100%;"></div></div> 
+
+</body>
+</html>

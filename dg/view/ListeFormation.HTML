@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+
+</head>
+
+<body>
+
+ <table id = "grid"></table>
+  <div id = "jqGridPager" style="height:8%;"></div>
+        
+ <script>
+$(document).ready(function(){
+   
+    $("#grid").jqGrid({
+	            url: "controller/data.php",
+			
+                datatype: "json",
+        colModel: [
+                    {label: 'RIM', align: 'center', name: 'RIM',  width: 30, sorttype: 'integer',editrules: {required: true,number: true}, formatter: 'integer', editable: true,editrules: {required: true}},
+                    {label: 'Nom Client', name: 'Nom_Client', width: 50, editable: true,editrules: {required: true}},
+                    {label: 'status pret ', align: 'center', name: 'Status', width: 30, sorttype: 'integer', editable: true ,editrules: {required: true},sorttype:'string'},
+                    {label: 'Agence', align: 'right', name: 'Agence', width: 50, sorttype: 'integer',editrules: {required: true,number: true}, formatter: 'integer', editable: true},
+                    {label: 'Date Maturite', align: 'center', name: 'Date_Maturite', width: 60, sorttype: 'number',editrules: {required: true,minValue: 1,
+                            maxValue: 31,}, editable: true},
+
+                    {label: 'Date Participation', align: 'center', name: 'Date_Participation', width: 40
+					},
+					{label: 'Avantage Octorye', align: 'center', name: 'Avantage_Octorye', width: 30, editable: true,editrules: {required: true}}
+	
+					
+                ],
+       loadonce: true,
+                viewrecords: true,
+                autowidth: true,
+                height: 350,
+                rowNum: 100000,
+                rownumWidth: 25,
+				altRows: true,
+                caption: "Liste formation",
+                pager: "#jqGridPager",
+				footerrow: true,
+				pgbuttons: true, 
+				subGrid: true
+				});
+				       $('#grid').navGrid("#jqGridPager", {edit: false, add: false, del: false, refresh: false, view: false});
+				
+				        $('#grid').inlineNav('#jqGridPager',
+                
+                { 
+                    edit: true, 
+                    add: true, 
+                    del: true, 
+                    cancel: true,
+                    editParams: {
+     aftersavefunc: function () {
+    $("#grid").jqGrid('setGridParam',{datatype:'json'}).trigger('reloadGrid');
+		},errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+					 },
+					 addParams: {
+ aftersavefunc: function () {
+    $("#grid").jqGrid('setGridParam',{datatype:'json'}).trigger('reloadGrid');
+		},errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText
+                    }
+					 }
+				}
+						, {multipleSearch: true});
+
+	
+        
+    });
+	
+
+ </script>
+ 
+ 
+ 
+
+ 
+ 
+
+		
+</body>
+</html>
+

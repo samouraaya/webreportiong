@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_Frais_Gage_';</script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+
+<div id="imrpim">
+<center><legend>Frais Gage</legend></center>
+    <center><table id="jqGrid" border="1"></table></center></div>
+    <div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url:"../controller/api/reporting_frais_gage",
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'RIM',width:70,align:"center",name:"N_RIM"},
+			{ label: 'Agence',width:150,align:"center",name:"Agence"},
+			{ label: 'Frais de Gage', name: 'Frais_de_gage',align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Date Date_decaissement', name: 'Date_decaissement',align:"center",sorttype: "date", formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions: { 
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+			}}},
+			
+			
+          
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: false
+
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    //position from top
+        left:700    //position from left
+    };
+						
+       setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+	   
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Frais Gage </p><br></div></div>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="../../js/histo_cc_chart.js"></script>
+<script>var s='6_DOC_Histo_Perf_CC_';</script>
+<script>
+var agence = sessionStorage.getItem("agence");
+	$.ajax({
+        url: '../controller/api/fn_rsm?agence='+agence,
+        data: 'go',
+        dataType: 'json', 
+        success: function(data) {
+			for ( var i = 0; i < data.length; i++ ) 
+				{
+				var val = data[i].val;
+				var text = data[i].text;
+				$('#myselect').append('<option value='+val+'>'+text+'</option>');
+				};
+        }
+    });
+	</script>
+	<style>
+	a.canvasjs-chart-credit{visibility: hidden;}
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+</head>
+
+<body>
+<div id="imprim">
+<legend> <span class="glyphicon glyphicon-flash"></span> Historique</legend>
+
+  <table id="jqGrid" ></table></div>
+    <div id="jqGridPager" style="position:relative;"></div> 
+<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_histo_global?agence="+agence,
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'Mois',width:70, name: 'Dureetrait',align:"center",sorttype: 'integer'},
+			{ label: 'Année',width:70, name: 'anne',align:"center",sorttype: 'integer'},
+			{ label: 'RSM',width:150,align:"center", name: 'RSM',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php?agence='+agence}},
+			{ label: '# de déc',width:70, name: 'nbdec',align:"center",sorttype: 'integer'},
+			{ label: 'Vol de déc',width:70, name: 'vldec',align:"center",sorttype: 'integer'},
+			{ label: '# encours',width:70, name: 'nb',align:"center",sorttype: 'integer'},
+			{ label: 'Vol encours',width:70, name: 'nbencours' ,sorttype: 'integer' ,align:"center",formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0} },
+			{ label: 'Par1',width:70, name: 'somme' ,sorttype: 'integer' ,align:"center",formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: '% Par1',width:70, name: 'perpar1' ,sorttype: 'integer' ,align:"center",formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 2}},
+			{ label: 'Par30',width:70, name: 'somencours',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: '% Par30',width:70, name: 'perpar30' ,sorttype: 'integer' ,align:"center",formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 2}},
+			{ label: 'Par90',width:70, name: 'par90',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: '% Par90',width:70, name: 'perpar90' ,sorttype: 'integer' ,align:"center",formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 2}},
+			
+
+          
+		],
+		
+		
+		autowidth:true,
+		pgbuttons: false,     
+		pgtext: false,         
+		viewrecords: true, 
+		height: 390,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: false,
+		
+              
+
+	});
+	
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700   
+    };
+		  setPrintGrid('jqGrid','jqGridPager','Print');
+		  setExportGrid('jqGrid','jqGridPager','Export');
+	   
+        });
+
+
+
+ </script>
+<div class="col-md-4"> <b>CC: </b><select id="myselect" name="myselect" class="form-control" onchange="remplir_gl()"><option value="">Choisir un CC...</option></select>
+ </div>
+  <br>
+<div class="col-md-12">  
+<div class="col-md-6"><div id="volumedec" style="height: 300px; width: 100%;"></div> </div>
+<div class="col-md-6"><div id="nbrdec" style="height: 300px; width: 100%;"></div> </div>
+</div>
+<div id='prt-container' ><p> Historique </p><br></div></div>
+<script>
+
+	function remplir_gl() {
+	var id_cc=$('#myselect').val();
+	loadchart(id_cc);	
+		}
+</script>
+</body>
+</html>

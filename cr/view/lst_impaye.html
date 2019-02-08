@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>var s='6_DOC_Liste_Impaye_';</script> 
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+
+
+<center><legend>Liste des prêts en impayé</legend></center>
+<center><table id="jqGrid" ></table></center>
+<div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+var couleur = sessionStorage.getItem("couleur"); 
+$(document).ready(function () {
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/liste_impaye?user="+couleur,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RIM', name: 'RIMNO',align:"center",sorttype: 'integer'},
+			{ label: 'Nom Client', name: 'Client_name' ,sorttype: 'integer' ,align:"center" },
+			{ label: 'N° Tel', name: 'phone' ,sorttype: 'integer' ,align:"center" },
+			{ label: 'PAR', name: 'PAR',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Nombre jours de retard', name: 'MaxLateDAYS',align:"center",sorttype: 'integer'},
+			{ label: 'Montant Echéance', name: 'Monech',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Paiements du jour', name: 'disp',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Reste à payer', name: 'Totalenarriéré',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},    
+		],
+		pgbuttons: false,     
+		pgtext: false,
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		footerrow: true,
+		pager: "#jqGridPager",
+			
+		loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "PAR", false, "sum");
+						sum2 = $self.jqGrid("getCol", "Totalenarriéré", false, "sum");
+						count1 = $self.jqGrid("getCol", "Totalenarriéré", false, "count");
+						sum1=parseFloat(sum1);
+						sum2=parseFloat(sum2);
+						$self.jqGrid("footerData", "set", {RIMNO: "Total en TND:", PAR: sum1});
+						$self.jqGrid("footerData", "set", {Totalenarriéré: sum2});
+					
+                }
+	});
+
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+						
+		setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+		 
+        });
+ </script>
+ <br>
+<div id='prt-container' ><p> Liste des prêts en impayé </p><br></div>
+
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../../js/rapport_acm.js" async ></script>
+<script type="text/javascript" src="../../js/xlsx.core.min.js"></script>
+<script type="text/javascript" src="../../js/Blob.js"></script>
+<script type="text/javascript" src="../../js/FileSaver.js"></script>
+<script type="text/javascript" src="../../js/Export2Excel.js"></script>
+<script>
+function doit() { export_table_to_excel('table','Repartition_des_credits_Rapport_ACM'); }
+</script>
+<style type="text/css">
+
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:11px;
+}
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+  </style>
+        <title>Répartition des crédits Rapport ACM</title>
+</head>
+
+
+
+<body>
+
+		<div class="row1">
+<legend> <span class="glyphicon glyphicon-bitcoin" ></span> Répartition des crédits Rapport ACM</legend>
+<div class="row1">
+<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onclick="doit();" width='24px'> Excel</a>
+						</li>	
+						
+						</div>	
+<table id="table" class="table table-striped" >
+<TR>
+<td width="200px"></td>
+<td width="100px" colspan="2" class="center" bgcolor="#98DB9C"><center>Décaissements</center></td>
+<td width="100px" colspan="2" class="center" bgcolor="#98DB9C"><center>Encours</center></td>
+
+</TR>
+<tbody>
+
+<tr>
+<td  bgcolor="#ffb90f" class="center" >Région</td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Nombre</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Montant (DT)</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Nombre</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Montant (DT)</center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Nord-Est</td>
+<td id="DEC1000NB"  class="center"><center></center></td>
+<td id="DEC1000VL"  class="center"><center></center></td>
+<td id="ENC1000NB"  class="center"><center></center></td>
+<td id="ENC1000VL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Nord-Ouest</td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Centre-Est</td>
+<td id="DEC2000NB"  class="center"><center></center></td>
+<td id="DEC2000VL"  class="center"><center></center></td>
+<td id="ENC2000NB"  class="center"><center></center></td>
+<td id="ENC2000VL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Centre-Ouest</td>
+<td id="DEC3000NB"  class="center"><center></center></td>
+<td id="DEC3000VL"  class="center"><center></center></td>
+<td id="ENC3000NB"  class="center"><center></center></td>
+<td id="ENC3000VL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Sud-Est</td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Sud-Ouest</td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" ><b>Total</b></td>
+<td id="DECREGNB"  class="center"><center></center></td>
+<td id="DECREGVL"  class="center"><center></center></td>
+<td id="ENCREGNB"  class="center"><center></center></td>
+<td id="ENCREGVL"  class="center"><center></center></td>
+</tr>
+<!--------------------------------------------->
+<tr>
+<td  bgcolor="#ffb90f" class="center" >Secteur d'activité</td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Nombre</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Montant (DT)</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Nombre</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Montant (DT)</center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >N/A</td>
+<td id="DECNANB"  class="center"><center></center></td>
+<td id="DECNAVL"  class="center"><center></center></td>
+<td id="ENCNANB"  class="center"><center></center></td>
+<td id="ENCNAVL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Amélioration des conditions de vie</td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Agriculture</td>
+<td id="DECAGRNB"  class="center"><center></center></td>
+<td id="DECAGRVL"  class="center"><center></center></td>
+<td id="ENCAGRNB"  class="center"><center></center></td>
+<td id="ENCAGRVL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Artisanat</td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Petits métiers</td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+<td id=""  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Production</td>
+<td id="DECPRODNB"  class="center"><center></center></td>
+<td id="DECPRODVL"  class="center"><center></center></td>
+<td id="ENCPRODNB"  class="center"><center></center></td>
+<td id="ENCPRODVL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Commerce</td>
+<td id="DECVENTENB"  class="center"><center></center></td>
+<td id="DECVENTEVL"  class="center"><center></center></td>
+<td id="ENCVENTENB"  class="center"><center></center></td>
+<td id="ENCVENTEVL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" >Services</td>
+<td id="DECSERVNB"  class="center"><center></center></td>
+<td id="DECSERVVL"  class="center"><center></center></td>
+<td id="ENCSERVNB"  class="center"><center></center></td>
+<td id="ENCSERVVL"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" ><b>Total</b></td>
+<td id="DECACTNB"  class="center"><center></center></td>
+<td id="DECACTVL"  class="center"><center></center></td>
+<td id="ENCACTNB"  class="center"><center></center></td>
+<td id="ENCACTVL"  class="center"><center></center></td>
+</tr>
+<!--------------------------------------------->
+<tr>
+<td  bgcolor="#ffb90f" class="center" >Genre</td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Nombre</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Montant (DT)</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Nombre</center></td>
+<td id="" bgcolor="#98DB9C" class="center"><center>Montant (DT)</center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" > Part des Hommes </td>
+<td id="DecMnb"  class="center"><center></center></td>
+<td id="DecMvl"  class="center"><center></center></td>
+<td id="EncoursMnb"  class="center"><center></center></td>
+<td id="EncoursMvl"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" > Part des Femmes</td>
+<td id="DecFnb"  class="center"><center></center></td>
+<td id="DecFvl"  class="center"><center></center></td>
+<td id="EncoursFnb"  class="center"><center></center></td>
+<td id="EncoursFvl"  class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#ffe4e1" class="center" ><b>Total</b></td>
+<td id="DECGENRENB"  class="center"><center></center></td>
+<td id="DECGENREVL"  class="center"><center></center></td>
+<td id="ENCGENRENB"  class="center"><center></center></td>
+<td id="ENCGENREVL"  class="center"><center></center></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+</body>
+</html>

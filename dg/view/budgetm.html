@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../../js/budget_information_m.js" async ></script>
+<script src="../../js/custom.js"></script>
+<link href="../../css/custom.css" rel="stylesheet">
+<link href="../../css/reporting_direction.css" rel="stylesheet">
+
+<style type="text/css">
+a.canvasjs-chart-credit{visibility: hidden;}
+    .chart-legend, .bar-legend, .line-legend, .pie-legend, .radar-legend,
+.polararea-legend, .doughnut-legend {
+    list-style-type: none;
+    margin-top: 5px;
+    text-align: center
+}
+
+.chart-legend li, .bar-legend li, .line-legend li, .pie-legend li, .radar-legend li,
+.polararea-legend li, .doughnut-legend li {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    padding: 2px 8px 2px 28px;
+    font-size: smaller;
+    cursor: default
+}
+
+.chart-legend li span, .bar-legend li span, .line-legend li span, .pie-legend li span,
+.radar-legend li span, .polararea-legend li span, .doughnut-legend li span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px
+}
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:16px;
+}
+.table_budget {
+font-size: 12px;
+color:#fff;
+}
+  </style>
+        <title>Reporting budgétaire M-1 - MANAGEMENT</title>
+</head>
+
+
+
+<body>
+
+		<div class="row1">
+<legend> <span class="glyphicon glyphicon-bitcoin" ></span> Reporting Direction M-1</legend>
+<div class="row1">
+<div class="row tile_count">
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Décaissements (Depuis début année)</span>
+              <div class="count" id="dec_yearvl"></div>
+			  <div class="count" id="obj_dec_yearvl"></div>
+              <span id="objvl_decyear" class="count_bottom"></span>
+            </div>
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Décaissements (Depuis début année)</span>
+              <div class="count" id="dec_yearnb"></div>
+			  <div class="count" id="obj_dec_yearnb"></div>
+              <span id="objnb_decyear" class="count_bottom"></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Décaissement ce Mois(Volume)</span>
+              <div class="count" id="vl_decaissement"></div>
+			  <div class="count" id="obj_vl_decaissement"></div>
+              <span id="objvl" class="count_bottom"></span>
+            </div>
+           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Décaissement ce Mois(Nombre)</span>
+              <div class="count" id="nb_decaissement"></div>
+			  <div class="count" id="obj_nb_decaissement"></div>
+              <span id="objnb" class="count_bottom"></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Encours(Volume)</span>
+              <div class="count" id="vl_encours"></div>
+			  <div class="count" id="obj_vl_encours"></div>
+              <span id="objvl_encours" class="count_bottom"></span>
+            </div>
+             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Encours(Nombre)</span>
+              <div class="count" id="nb_encours"></div>
+			  <div class="count" id="obj_nb_encours"></div>
+              <span id="objnb_encours" class="count_bottom"></span>
+            </div>
+       
+          </div>
+		<div class="x_panel">
+                  <div class="x_title">
+                    <h2>Reporting <small>Par agence</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <table  class="table table-striped" >
+<thead >
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Agence</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Nb décaissement (Année)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>VL décaissement (Année)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Nb décaissement (Mois)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>VL décaissement (Mois)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Nb encours</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>VL encours</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>PAR 0 (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>PAR 10 (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>PAR 30 (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>PAR 90 (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Passage en Perte (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Ech Payé à temps (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Taux Clôture dmd (%)</center></th>
+<th width="100px" class="table_budget" bgcolor="#00A65A"><center>Taux Renouvellement (%)</center></th>
+
+</thead>
+<tbody id="listedemande">
+</tbody>
+<tfoot id="footer_budget">
+</tfoot>
+</table>
+                  </div>
+                </div>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html >
+
+<head>
+<script>
+$(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+</script>
+<style>
+
+            .ui-jqgrid .ui-jqgrid-caption
+            {
+				font-size: 17px;
+            }
+			.ui-jqgrid .ui-jqgrid-titlebar
+			{
+				height : 30px;
+			}
+        </style>
+</head>
+
+<body>
+
+
+
+    <h3>Rapport CRM detaillé</h3>
+	<br>
+	<div class="col-md-12">
+	<table id="jqGrid" ></table>
+    <div id="jqGridPager" style="position:relative;"></div>
+
+	</div>
+  
+	<div class="col-md-12">
+	<table id="jqGrid1" ></table>
+    <div id="jqGridPager1" style="position:relative;"></div>
+
+	</div>
+  
+	<div class="col-md-12">
+	<table id="jqGrid2" ></table>
+    <div id="jqGridPager2" style="position:relative;"></div>
+
+	</div>
+  
+	<div class="col-md-12">
+	<table id="jqGrid3" ></table>
+    <div id="jqGridPager3" style="position:relative;"></div>
+	<br><br><br>
+	</div>
+
+	<div class="col-md-12">
+	<table id="jqGrid5" ></table>
+    <div id="jqGridPager5" style="position:relative;"></div>
+	<br><br><br>
+	</div>
+
+    <h3>Rapport CRM simplifié</h3>
+	<br>
+    <div class="col-md-12">
+	<table id="jqGrid4" ></table>
+    <div id="jqGridPager4" style="position:relative;"></div>
+
+	</div>
+    
+</body>
+
+<script>
+var iduser = sessionStorage.getItem("iduser"); 
+$(document).ready(function () {
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_creation_prospect_crm?iduser="+iduser,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:40,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Création Semaine Encours',width:60,align:"center", name: 'CREATWEEK',sorttype: 'integer'},
+			{ label: 'Création Semaine -1',width:60,align:"center", name: 'CREATWEEK_1',sorttype: 'integer'},
+			{ label: 'Création  mois en cours  ',width:60,align:"center",name:'CREATMONTH',sorttype: 'integer'},
+			{ label: 'Création  Doublon mois en cours  ',width:60,align:"center",name:'DoublonMonth',sorttype: 'integer'},
+			{ label: 'Création  dans les 3 mois',width:60,align:"center", name: 'CREATMONTH3'},
+			{ label: '% Pros crees dans total prospect ',width:50,align:"center", name: 'PERTOTAL'},
+			{ label: '% Pros crees par lui-même dans les 3 mois ',width:50,align:"center", name: 'PER3MONTH'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		caption: "Création prospects",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							CREATWEEK = $self.jqGrid("getCol", "CREATWEEK", false, "avg");
+							CREATMONTH = $self.jqGrid("getCol", "CREATMONTH", false, "avg");
+							CREATMONTH3 = $self.jqGrid("getCol", "CREATMONTH3", false, "avg");
+
+							CREATWEEK=parseInt(CREATWEEK);
+							CREATMONTH=parseInt(CREATMONTH);
+							CREATMONTH3=parseInt(CREATMONTH3);
+
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, CREATWEEK: CREATWEEK
+														, CREATMONTH: CREATMONTH
+														, CREATMONTH3: CREATMONTH3});
+					
+					
+                }
+				
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+$(document).ready(function () {
+
+		$("#jqGrid1").jqGrid({
+		url: "../controller/api/fn_relance_prospect_crm?iduser="+iduser,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:40,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Relance dans la semaine',width:60,align:"center", name: 'RELANCEWEEK',sorttype: 'integer'},
+			{ label: 'Relance dans la semaine -1',width:60,align:"center", name: 'RELANCEWEEK1',sorttype: 'integer'},
+			{ label: 'Dont noté 1',width:60,align:"center",name:'RELANCEWEEK_1',sorttype: 'integer'},
+			{ label: 'Relance dans le mois ',width:60,align:"center", name: 'RELANCEMONTH'},
+			{ label: 'Dont noté 1',width:50,align:"center", name: 'RELANCEMONTH_1'},
+			{ label: 'Prospect priorité du mois',width:50,align:"center", name: 'PRIMONTH'},
+			{ label: 'Relance prospects priorisés ',width:50,align:"center", name: 'PROPRIMONTH'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager1",
+		caption: "Relance prospects",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							RELANCEWEEK = $self.jqGrid("getCol", "RELANCEWEEK", false, "avg");
+							RELANCEWEEK_1 = $self.jqGrid("getCol", "RELANCEWEEK_1", false, "avg");
+							RELANCEMONTH = $self.jqGrid("getCol", "RELANCEMONTH", false, "avg");
+							RELANCEMONTH_1 = $self.jqGrid("getCol", "RELANCEMONTH_1", false, "avg");
+							PRIMONTH = $self.jqGrid("getCol", "PRIMONTH", false, "avg");
+							PROPRIMONTH = $self.jqGrid("getCol", "PROPRIMONTH", false, "avg");
+						
+							RELANCEWEEK=parseInt(RELANCEWEEK);
+							RELANCEWEEK_1=parseInt(RELANCEWEEK_1);
+							RELANCEMONTH=parseInt(RELANCEMONTH);
+							RELANCEMONTH_1=parseInt(RELANCEMONTH_1);
+							PRIMONTH=parseInt(PRIMONTH);
+							PROPRIMONTH=parseInt(PROPRIMONTH);
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, RELANCEWEEK: RELANCEWEEK
+														, RELANCEWEEK_1: RELANCEWEEK_1
+														, RELANCEMONTH: RELANCEMONTH
+														, RELANCEMONTH_1: RELANCEMONTH_1
+														, PRIMONTH: PRIMONTH
+														, PROPRIMONTH: PROPRIMONTH});
+					
+					
+                }
+				
+	});
+	$("#jqGrid1").jqGrid('navGrid','#jqGridPager1',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+$(document).ready(function () {
+
+		$("#jqGrid2").jqGrid({
+		url: "../controller/api/fn_stock_prospect_crm?iduser="+iduser,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:40,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Total Prospects actif',width:60,align:"center", name: 'TotalActif',sorttype: 'integer'},
+			{ label: '1- A transformer rapidement',width:60,align:"center",name:'Pospect_rapidement',sorttype: 'integer'},
+			{ label: '2_interessé plus tard',width:60,align:"center", name: 'Pospect_tard'},
+			{ label: '3_A travailler',width:50,align:"center", name: 'Pospect_travailler'},
+			{ label: 'NB prospects inactifs',width:50,align:"center", name: 'Pospect_relancer'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager2",
+		caption: "Stock prospects",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							TotalActif = $self.jqGrid("getCol", "TotalActif", false, "avg");
+							Pospect_rapidement = $self.jqGrid("getCol", "Pospect_rapidement", false, "avg");
+							Pospect_tard = $self.jqGrid("getCol", "Pospect_tard", false, "avg");
+							Pospect_travailler = $self.jqGrid("getCol", "Pospect_travailler", false, "avg");
+							Pospect_relancer = $self.jqGrid("getCol", "Pospect_relancer", false, "avg");
+						
+							TotalActif=parseInt(TotalActif);
+							Pospect_rapidement=parseInt(Pospect_rapidement);
+							Pospect_tard=parseInt(Pospect_tard);
+							Pospect_travailler=parseInt(Pospect_travailler);
+							Pospect_relancer=parseInt(Pospect_relancer);
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, TotalActif: TotalActif
+														, Pospect_rapidement: Pospect_rapidement
+														, Pospect_tard: Pospect_tard
+														, Pospect_travailler: Pospect_travailler
+														, Pospect_relancer: Pospect_relancer});
+					
+					
+                }
+				
+	});
+	$("#jqGrid2").jqGrid('navGrid','#jqGridPager2',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+$(document).ready(function () {
+
+		$("#jqGrid3").jqGrid({
+		url: "../controller/api/fn_transformation_prospect_crm?iduser="+iduser,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:40,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Prospects crées dans le mois ayant deposé une demande',width:60,align:"center", name: 'TRANSMONTH',sorttype: 'integer'},
+			{ label: 'Prospect crées dans les 3 mois ayant deposé une demande',width:60,align:"center",name:'TRANS3MONTH',sorttype: 'integer'},
+			{ label: 'prospect crées et assignés a un autre cc dans les 3 mois ',width:60,align:"center", name: 'CREATOWNER'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager3",
+		caption: "Transformation  prospect /contribution effort general ",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							TRANSMONTH = $self.jqGrid("getCol", "TRANSMONTH", false, "avg");
+							TRANS3MONTH = $self.jqGrid("getCol", "TRANS3MONTH", false, "avg");
+							CREATOWNER = $self.jqGrid("getCol", "CREATOWNER", false, "avg");
+
+						
+							TRANSMONTH=parseInt(TRANSMONTH);
+							TRANS3MONTH=parseInt(TRANS3MONTH);
+							CREATOWNER=parseInt(CREATOWNER);
+
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, TRANSMONTH: TRANSMONTH
+														, TRANS3MONTH: TRANS3MONTH
+														, CREATOWNER: CREATOWNER});
+					
+					
+                }
+				
+	});
+	$("#jqGrid3").jqGrid('navGrid','#jqGridPager3',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+$(document).ready(function () {
+
+		$("#jqGrid5").jqGrid({
+		url: "../controller/api/fn_suivi_cc?iduser="+iduser,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:40,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Visite Effectué dans la semaine',width:60,align:"center", name: 'nb_visite_semaine',sorttype: 'integer'},
+			{ label: 'Visite Effectué dans le mois',width:60,align:"center",name:'nb_visite_mois',sorttype: 'integer'},
+			{ label: 'Nb Visite en retard ',width:60,align:"center", name: 'Nb_Retard'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 500,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager5",
+		caption: "Suivi Clients   ",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							nb_visite_semaine = $self.jqGrid("getCol", "nb_visite_semaine", false, "avg");
+							nb_visite_mois = $self.jqGrid("getCol", "nb_visite_mois", false, "avg");
+							Nb_Retard = $self.jqGrid("getCol", "Nb_Retard", false, "avg");
+
+						
+							Nb_Retard=parseInt(Nb_Retard);
+							nb_visite_mois=parseInt(nb_visite_mois);
+							nb_visite_semaine=parseInt(nb_visite_semaine);
+
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, Nb_Retard: Nb_Retard
+														, nb_visite_mois: nb_visite_mois
+														, nb_visite_semaine: nb_visite_semaine});
+					
+					
+                }
+				
+	});
+	$("#jqGrid5").jqGrid('navGrid','#jqGridPager5',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+$(document).ready(function () {
+
+		$("#jqGrid4").jqGrid({
+		url: "../controller/api/fn_creation_relance_crm?iduser="+iduser,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:40,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Création prospect semaine en cours ',width:60,align:"center", name: 'CREATWEEK',sorttype: 'integer'},
+			{ label: 'Création prospect mois en cours ',width:60,align:"center",name:'CREATMONTH',sorttype: 'integer'},
+			{ label: 'Relance dans la semaine ',width:60,align:"center", name: 'RELANCEWEEK'},
+			{ label: 'Relance dans le mois ',width:60,align:"center", name: 'RELANCEMONTH'},
+			{ label: 'Prospect priorité du mois  ',width:60,align:"center", name: 'PRIMONTH'},
+			{ label: 'Relance prospects priorisés',width:60,align:"center", name: 'PROPRIMONTH'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager4",
+		caption: "Création prospects/relance ",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							CREATWEEK = $self.jqGrid("getCol", "CREATWEEK", false, "avg");
+							CREATMONTH = $self.jqGrid("getCol", "CREATMONTH", false, "avg");
+							RELANCEWEEK = $self.jqGrid("getCol", "RELANCEWEEK", false, "avg");
+							RELANCEMONTH = $self.jqGrid("getCol", "RELANCEMONTH", false, "avg");
+							PRIMONTH = $self.jqGrid("getCol", "PRIMONTH", false, "avg");
+							PROPRIMONTH = $self.jqGrid("getCol", "PROPRIMONTH", false, "avg");
+
+						
+							CREATWEEK=parseInt(CREATWEEK);
+							CREATMONTH=parseInt(CREATMONTH);
+							RELANCEWEEK=parseInt(RELANCEWEEK);
+							RELANCEMONTH=parseInt(RELANCEMONTH);
+							PRIMONTH=parseInt(PRIMONTH);
+							PROPRIMONTH=parseInt(PROPRIMONTH);
+
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, CREATWEEK: CREATWEEK
+														, CREATMONTH: CREATMONTH
+														, RELANCEWEEK: RELANCEWEEK
+														, RELANCEMONTH: RELANCEMONTH
+														, PRIMONTH: PRIMONTH
+														, PROPRIMONTH: PROPRIMONTH},
+													{name: "Total:"
+														, CREATWEEK: CREATWEEK
+														, CREATMONTH: CREATMONTH
+														, RELANCEWEEK: RELANCEWEEK
+														, RELANCEMONTH: RELANCEMONTH
+														, PRIMONTH: PRIMONTH
+														, PROPRIMONTH: PROPRIMONTH});
+					
+					
+                }
+				
+	});
+	$("#jqGrid4").jqGrid('navGrid','#jqGridPager4',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+</script>
+</html>

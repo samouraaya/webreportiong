@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+	<script>
+function calculate(){
+objdecaissement = document.theForm.objdecaissement.value;
+realdecaissement = document.theForm.realdecaissement.value;
+
+total=(realdecaissement*100)/objdecaissement;
+total=total.toFixed(2);
+document.theForm.result.value = total+'%';
+if (total<60){
+document.theForm.objobj.value=0;}
+else if ((total>=60)&&(total<80))
+{
+	document.theForm.objobj.value=40+'%';
+}
+else if ((total>=80)&&(total<95))
+{
+	document.theForm.objobj.value=75+'%';
+}
+else if ((total>=95)&&(total<125))
+{
+	document.theForm.objobj.value=100+'%';
+}
+else if ((total>125))
+{
+	document.theForm.objobj.value=115+'%';
+}
+
+text=parseInt(document.theForm.objobj.value)*15/100;
+document.theForm.prime1.value=text.toFixed(0);
+}
+</script>
+	<script>
+function calculate1(){
+objdecaissement = document.theForm.objvolume.value;
+realdecaissement = document.theForm.realvolume.value;
+
+total=(realdecaissement*100)/objdecaissement;
+total=total.toFixed(2);
+document.theForm.result1.value = total+'%';
+
+if (total<60){
+document.theForm.objobj1.value=0;}
+else if ((total>=60)&&(total<80))
+{
+	document.theForm.objobj1.value=40+'%';
+}
+else if ((total>=80)&&(total<95))
+{
+	document.theForm.objobj1.value=75+'%';
+}
+else if ((total>=95)&&(total<125))
+{
+	document.theForm.objobj1.value=100+'%';
+}
+else if ((total>125))
+{
+	document.theForm.objobj1.value=115+'%';
+}
+
+text=parseInt(document.theForm.objobj1.value)*25/100;
+document.theForm.prime2.value=text.toFixed(0);
+}
+</script>
+<script>
+function calculate2(){
+objeche = document.theForm.objeche.value;
+realeche = document.theForm.realeche.value;
+
+total=(realeche*100)/objeche;
+total=total.toFixed(2);
+document.theForm.result2.value = total+'%';
+if (total<70){
+document.theForm.objobj2.value=0;}
+else if ((total>=70)&&(total<80))
+{
+	document.theForm.objobj2.value=0+'%';
+}
+else if ((total>=80)&&(total<85))
+{
+	document.theForm.objobj2.value=20+'%';
+}
+else if ((total>=85)&&(total<90))
+{
+	document.theForm.objobj2.value=50+'%';
+}
+else if ((total>=90)&&(total<95))
+{
+	document.theForm.objobj2.value=75+'%';
+}
+else if ((total>95))
+{
+	document.theForm.objobj2.value=100+'%';
+}
+
+text=parseInt(document.theForm.objobj2.value)*10/100;
+document.theForm.prime3.value=text.toFixed(0);
+if (total<70){
+	
+document.theForm.totalprime.value=0}
+	else
+	{document.theForm.totalprime.value=parseInt(document.theForm.prime1.value)+parseInt(document.theForm.prime2.value)+parseInt(document.theForm.prime3.value)+'%';}
+
+}
+</script>
+	
+ <style>
+           
+
+.carousel .item {
+	
+  height: 650px;
+}
+
+
+.carousel img {
+  position: absolute;
+  top: 10;
+  left: 0;
+  min-width: 90%;
+  min-height: 330px;
+}
+
+
+#carouselButtons {
+    margin-left: 100px;
+    position: absolute;
+    bottom: 0px;
+}
+
+        </style>
+    
+</head>
+
+<body>
+
+		<div class="row1">
+		
+		<legend>OUTIL DE CALCUL DE LA PRIME</legend>
+		<div class="col-md-12">
+		<form name="theForm">
+
+
+
+		<table class="table table-bordered" >
+<thead>
+<th></th>
+<th  bgcolor="#78A419"><center>Nb décaissements mensuel</center></th>
+<th  bgcolor="#78A419"><center>Augmentation mensuelle encours</center></th>
+<th  bgcolor="#78A419"><center>Respect des échéances</center></th>
+
+
+</thead>
+<tbody>
+<tr>
+<td><b><p align="right">OBJECTIFS</p></b></td>
+<td>
+<input type="text" class="form-control" name="objdecaissement" value="" placeholder="Nb décaissements mensuel" onchange="calculate()">
+</td>
+<td>
+<input type="text" class="form-control" name="objvolume" value="" placeholder="Augmentation mensuelle encours" onchange="calculate1()">
+</td>
+<td>
+<input type="text" class="form-control" name="objeche" value="" placeholder="Nb échéances prévues" onchange="calculate2()" >
+</td>
+</tr>
+<td><b><p align="right">REALISATIONS</p></b></td>
+<td>
+<input type="text" class="form-control"  name="realdecaissement"  value="" placeholder="Nb décaissements mensuel" onchange="calculate()">
+</td>
+<td>
+<input type="text" class="form-control"  name="realvolume"  value="" placeholder="Augmentation mensuelle encours" onchange="calculate1()">
+</td>
+<td>
+<input type="text" class="form-control"  name="realeche" value="" placeholder="Nb échéances payées à temps" onchange="calculate2()">
+</td>
+<tr>
+<td>
+<p align="right">% Réalisation objectifs</p>
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="result" value="0%">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="result1" value="0%">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="result2" value="0%">
+</td>
+</tr>
+
+<tr>
+<td>
+<p align="right"> % Prime sur cet objectif </p>
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="objobj" value="0">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="objobj1" value="0">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="objobj2" value="0">
+</td>
+</tr>
+<tr>
+<td>
+<p align="right">Pondération de cet objectif</p>
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly value="15%">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly value="25%">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly value="10%">
+</td>
+</tr>
+<tr>
+<td>
+<p align="right">Prime correspondante en % salaire net</p>
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="prime1" value="0%">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="prime2" value="0%">
+</td>
+</td>
+<td>
+<input type="text" class="form-control" readonly name="prime3" value="0%">
+</td>
+</tr>
+<tr>
+<td >
+<p align="right">Total prime en % salaire net</p>
+</td>
+
+<td colspan="3">
+<input type="text" class="form-control" style="text-align:center;font-size: 20px;  background-color:#DE6A1C;" readonly name="totalprime" value="0">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>		
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <script>var s='6_DOC_Liste_clients_credit_complem_';</script>
+
+    <style>
+        span.cellWithoutBackground
+        {
+            display:block;
+            background-image:none;
+            margin-right:0px;
+            margin-left:0px;
+            height:100%;
+        }
+        /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+        .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }
+        p {
+            visibility:hidden;
+        }
+        IMG.displayed {
+            display: block;
+            margin-left: auto;
+            margin-right: auto }
+    </style>
+    <img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+    <script>
+        $(document).ready(function(){
+
+            $("legend").hide();
+        });
+        $(document).load(function(){
+            $("#load").append('loaded');
+        });
+        $(document).ready(function(){
+
+            $("#load").hide();
+        });
+        $(document).ready(function(){
+
+            $("legend").show();
+        });
+    </script>
+</head>
+
+<body>
+
+<div id="row1">
+    <center><legend>liste des clients éligibles à un crédit complémentaire</legend></center>
+    <center><table id="jqGrid" border="1"></table></center>
+    <div id="jqGridPager" style="position:relative;"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+		var user = sessionStorage.getItem("iduser"); 
+
+            $("#jqGrid").jqGrid({
+                url: "../controller/api/liste_r_clients_credit_complem?user="+user,
+                datatype: "json",
+
+                colModel: [
+                    { label: 'RIM', name: 'rim',sorttype:"integer",align:"center"},
+                    { label: 'N° LI', name: 'li',sorttype:"integer",align:"center"},
+                    { label: 'Nom Client', name: 'clt_name',sorttype:"string",align:"center" },
+                    { label: 'Tel', name: 'phone',sorttype:"integer",align:"center"},
+                    { label: 'Montant', name: 'Montant_LI',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+                    { label: 'Encours', name: 'encours',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+                    { label: 'NBR des retards ', name: 'NB_ECH_Retard',align:"center" },
+                    { label: 'Residence', name: 'residence',align:"center" },
+                    { label: 'Retard max', name: 'Max_Retard',align:"center"},
+                    { label: 'NBR enfants', name: 'ENF',align:"center"},
+                ],
+                pgbuttons: false,
+                pgtext: false,
+                viewrecords: true,
+                autowidth:true,
+                height: 490,
+                rowNum: 10000,
+                loadonce: true,
+                pager: "#jqGridPager",
+                footerrow: false
+            });
+            $("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                {},{},{},{multipleSearch:true}),
+
+                {
+                    addCaption:'search',
+                    top:300,
+                    left:700
+                };
+            setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+
+        });
+
+
+
+    </script>
+    <br>
+    <div id='prt-container' ><p>liste des clients éligibles à un crédit complémentaire</p><br></div></div>
+
+</body>
+</html>

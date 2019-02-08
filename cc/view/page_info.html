@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+<script type="text/javascript" src="../../js/fonctions.js"></script>
+<script>
+	 $.ajax({
+
+            type: "GET",
+            url: "../controller/api/show_notification",
+            dataType: "json",
+            success: function (data) {
+			var i=data.length;
+			var compteur=0;
+				while (compteur<i) 
+				{	
+					$.notify({
+					title: 'Envoyé Par :<strong>'+data[compteur].sender+'<br></strong><br>',
+					message: data[compteur].body+'<br>Envoyé le :'+data[compteur].dateinsert
+					},{
+					type: 'success',
+					newest_on_top: true,
+					delay: 1555000,
+					offset: {
+						x: 20,
+						y: 100
+					}
+					});
+				compteur++;
+				}
+            },
+            error: function (result) {
+                alert("Error");
+            }
+        });
+		
+
+	</script>
+
+<head>
+<body bgcolor="#DCDCDC">		
+		<legend><h2>Tableau de bord</h2></legend>
+		<div class="col-md-12">
+		<div class="col-md-4">
+		<div class="well">		
+		<legend  style="color:#006B2C"><b>Mes demandes en cours</b></legend>
+		<label  style="color: #59A92E;">Demandes en statut « pending » :</label>
+		<input type="text" class="form-control" id="nb_pending" readonly >
+		</div>
+		</div>
+		
+		
+		<div class="col-md-4">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>Mes demandes en cours</b></legend>
+		<label  style="color: #59A92E;">Statut « pending » > 10J :</label>
+		<input type="text" class="form-control" readonly id="nb_pending_10">
+		</div>
+		</div>
+		
+		
+		<div class="col-md-4">
+		<div class="well ">
+		<legend  style="color:#006B2C"><b><span class="glyphicon glyphicon-dashboard" ></span> Heure du dernier Batch validé:</legend><br>
+		<input type="text" class="form-control" readonly id="heure_batch">
+		</div>
+		</div>
+		</div>
+			
+			
+		<div class="col-md-8">
+		<div class="col-md-4">
+		<div class="well ">
+		<legend  style="color:#006B2C;font-size:16px;"><b>Mes décaissements du mois</b></legend>
+		<label  style="color: #59A92E;">Nombre de clients :</label>
+		<input type="text" class="form-control" readonly id="decaissement_clt">	
+		<br>
+		<label  style="color: #59A92E;">Volume :</label>
+		<input type="text" class="form-control" readonly id="decaissement_vl">
+		</div>
+		</div>
+			
+			
+		<div class="col-md-5">
+		<div class="well">
+		<legend  style="color:#006B2C;font-size:16px;"><b>Mes clients actifs </b></legend>
+		<label  style="color: #59A92E;">Nombre de clients :</label>
+		<input type="text" class="form-control" readonly id="nb_clt">		
+		<br>
+		<label  style="color: #59A92E;">Volume :</label>
+		<input type="text" class="form-control" readonly id="vl_clt">
+		</div>				
+		</div>
+		</div>
+
+		<div class="col-md-8">
+
+		<div class="col-md-3">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>Mes impayés </b></legend>
+		<label  style="color: #59A92E;">Nombre de clients:</label><br><br>
+		<label  style="color: #59A92E;">Volume :</label><br><br>
+		<label  style="color: #59A92E;">Pourcentage PAR:</label><br><br>
+		</div>
+		</div>
+		<div class="col-md-3">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>PAR 0</b> </legend>	
+		<input type="text" class="form-control" readonly id="par0">
+		<br>
+		<input type="text" class="form-control" readonly id="volpar0"><br>
+		<input type="text" class="form-control" readonly id="per_par0">
+		</div>
+		</div>
+		<div class="col-md-3">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>PAR 10 </b></legend>	
+		<input type="text" class="form-control" readonly id="par10">
+		<br>
+		<input type="text" class="form-control" readonly id="vlpar10">
+		<br>
+		<input type="text" class="form-control" readonly id="per_par10">
+		</div>
+		</div>
+		
+		<div class="col-md-3">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>PAR 30 </b></legend>	
+		<input type="text" class="form-control" readonly id="par30">
+		<br>
+		<input type="text" class="form-control" readonly id="vlpar30">
+		<br>
+		<input type="text" class="form-control" readonly id="per_par30">
+		</div>
+		</div>
+</div>	
+</body>
+</html>

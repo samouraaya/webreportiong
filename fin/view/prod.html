@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+<div id="imprim">
+<legend> <span class="glyphicon glyphicon-flash"></span> Indicateurs Productivité Par Agence/CC</legend>
+
+  <table id="jqGrid" ></table></div>
+    <div id="jqGridPager" style="position:relative;"></div> 
+<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_productive",
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'RSM',width:150,align:"center", name: 'RSM',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:50,align:"center", name: 'agence',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/branch.php'}},
+			{ label: 'Nbre - Décaissements du mois',width:60,width:150, name: 'nb',align:"center",sorttype: 'integer'},
+			{ label: 'Vol - Décaissements du mois', name: 'somme' ,sorttype: 'integer' ,align:"center",formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0} },
+			{ label: 'Nbre - Encours', name: 'nbencours' ,sorttype: 'integer' ,align:"center" },
+			{ label: 'Vol - Encours', name: 'somencours',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Durée de Traitement',width:70, name: 'Dureetrait',align:"center",sorttype: 'integer'},
+
+          
+		],
+		
+		
+		autowidth:true,
+		pgbuttons: false,     
+		pgtext: false,         
+		viewrecords: true, 
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: true,
+		
+		loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "nb", false, "AVG");
+						sum2 = $self.jqGrid("getCol", "somme", false, "AVG");
+						sum3 = $self.jqGrid("getCol", "nbencours", false, "AVG");
+						sum4 = $self.jqGrid("getCol", "somencours", false, "AVG");
+						sum5 = $self.jqGrid("getCol", "Dureetrait", false, "AVG");
+						sum1=sum1.toFixed(1);
+						sum2=sum2.toFixed(1);
+						sum3=sum3.toFixed(1);
+						sum4=sum4.toFixed(1);
+						sum5=sum5.toFixed(0);
+						
+                    $self.jqGrid("footerData", "set", {RSM: "Moyenne:", nb: sum1});
+					$self.jqGrid("footerData", "set", {somme: sum2});
+					$self.jqGrid("footerData", "set", {nbencours: sum3});
+					$self.jqGrid("footerData", "set", {somencours: sum4});
+					$self.jqGrid("footerData", "set", {somencours: sum4});
+					$self.jqGrid("footerData", "set", {Dureetrait: sum5});
+                }
+              
+
+	});
+	
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700   
+    };
+		  setPrintGrid('jqGrid','jqGridPager','Print');
+	   
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Indicateurs Productivité Par Agence/CC </p><br></div></div>
+</body>
+</html>

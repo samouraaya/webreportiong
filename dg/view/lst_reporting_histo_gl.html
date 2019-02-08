@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_reporting_histo_gl_';</script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+<center><legend>Reporting Historique GL</legend></center>
+
+<div class="col-md-12">
+    <center><table id="jqGrid" border="1"></table></center></div>
+    <div id="jqGridPager" style="position:relative;"></div>
+	<br>
+	<br>
+	<div class="col-md-12">
+	<center><table id="jqGrid1" border="1"></table></center>
+    <div id="jqGridPager1" style="position:relative;"></div></div>
+<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url:"../controller/api/reporting_histo_gl",
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'Libelle GL',width:150,align:"center",name:"Libelle_GL"},
+			{ label: 'N° Compte GL',width:150,align:"center",name:"N_Compte_GL"},
+			{ label: 'Debit Credit GL', name: 'Debit_Credit_GL',width:150,align:"center"},
+			{ label: 'Code du transaction',width:150,align:"center",name:"Code_du_transaction"},
+			{ label: 'Libelle du transaction',width:150,align:"center",name:"Libelle_du_transaction"},
+			{ label: 'Description du transaction',width:150,align:"center",name:"Description_du_transaction"},
+			{ label: 'Montant', name: 'Montant',width:150,align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Date', name: 'Date',align:"center",sorttype: "date", formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions: { 
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+			}}}
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 100000000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		caption: "Historique GL",
+		hiddengrid: true,
+		footerrow: false
+
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700    
+    };
+						
+       setExportGrid('jqGrid','jqGridPager','Export');
+	   
+        });
+
+
+
+ </script>
+ <script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid1").jqGrid({
+		url:"../controller/api/reporting_cur_bal_gl",
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'N° Compte GL',width:150,align:"center",name:"acct_no"},
+			{ label: 'Debit Credit GL', name: 'debit_credit',width:150,align:"center"},
+			{ label: 'Description',width:150,align:"center",name:"description"},
+			{ label: 'Encours', name: 'cur_bal',width:150,align:"center",align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 100000000,
+		loadonce: true,
+		pager: "#jqGridPager1",
+		caption: "Encours GL",
+		hiddengrid: true,
+		footerrow: false
+
+	});
+	$("#jqGrid1").jqGrid('navGrid','#jqGridPager1',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700    
+    };
+						
+       setExportGrid('jqGrid1','jqGridPager1','Export');
+	   
+        });
+
+
+
+ </script>
+
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_Portefeuille_cdr_';</script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script>   
+</head>
+
+<body>
+
+
+<div id="row1">
+<center><legend>Etat du portefeuille CDR</legend></center>
+    <table id="jqGrid" ></table>
+    <div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+$(document).ready(function () {
+
+		$("#jqGrid").jqGrid({
+		url:  "../controller/api/portfeuille_cdr",
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:150,align:"center", name: 'rsm',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:50,align:"center", name: 'age',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/branch.php'}},
+			{ label: 'RIM',align:"center",width:50, name: 'rim',sorttype: 'integer'},
+			{ label: 'Client',width:150,align:"center", name: 'NomCLT'},
+			{ label: 'Num compte',width:100,align:"center", name: 'Numcompte'},
+			{ label: 'Statut',align:"center",width:80, name: 'produit' ,sorttype:"string"},
+			{ label: 'Montant ',width:80,align:"center", name: 'amt_financed',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:" ", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Encours',width:80,align:"center", name: 'encours',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Type ID ',align:"center", name: 'typeid',sorttype: 'string'},
+			{ label: 'id ',align:"center", name: 'id',sorttype: 'string'},
+			{ label: 'date naiss ',align:"center", name: 'datenaiss',sorttype: "date",searchoptions: {
+                           
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    //minDate: new Date(2010, 0, 1),
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+                            }
+                        }, formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+			{ label: 'Nombre J retard', name: 'retard',align:"center"},
+		],
+		pgbuttons: false,     // disable page control like next, back button
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: true,
+			  loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "encours", false, "sum");
+						sum2 = $self.jqGrid("getCol", "amt_financed", false, "sum");
+						count1 = $self.jqGrid("getCol", "amt_financed", false, "count");
+						sum1=parseFloat(sum1);
+						sum2=parseInt(sum2);
+						
+                    $self.jqGrid("footerData", "set", {rsm: "Total en TND :",amt_financed: sum2, encours: sum1});
+					
+                }
+              
+				
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+						
+	 setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+	   
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Etat du portefeuille de crédit </p><br></div></div>
+
+</body>
+</html>

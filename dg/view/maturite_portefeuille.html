@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../../js/maturite_portefeuille.js" async ></script>
+
+
+<style type="text/css">
+
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:11px;
+}
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+  </style>
+        <title>Reporting Maturité Portefeuille</title>
+</head>
+
+
+
+<body>
+
+		<div class="row1">
+<legend> <span class="glyphicon glyphicon-bitcoin" ></span> Maturité Portefeuille</legend>
+<div class="row1">
+<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onClick ="$('#table').tableExport({type:'excel',escape:'false',tableName:'Maturite_Portefeuille'});" width='24px'> Excel</a>
+						</li>	
+						
+						</div>	
+<table id="table" class="table table-striped" >
+<thead>
+<th width="200px">Classe\Maturité</th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>Next day</center></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>Up to 1 week</center></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>1 week to 1 month</center></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>1 - 2 months</center></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>2 - 3 months</center></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>3 - 6 months</center></th>
+<th width="150px" class="center" bgcolor="#98DB9C"><center>6 months - 1 year</center></th>
+<th width="150px" class="center" bgcolor="#98DB9C"><center>1 - 2 years</center></th>
+<th width="150px" class="center" bgcolor="#98DB9C"><center>2 - 3 years</center></th>
+<th width="150px" class="center" bgcolor="#98DB9C"><center>3 - 5 years</center></th>
+<th width="150px" class="center" bgcolor="#98DB9C"><center>TOTAL</center></th>
+</thead>
+<tbody>
+
+<tr>
+
+<td  bgcolor="#98DB9C" class="center" >Créances Saines (0.5 %)</td>
+
+<td id="sain1day" class="center"><center></center></td>
+<td id="sain1week" class="center"><center></center></td>
+<td id="sain1month" class="center"><center></center></td>
+<td id="sain2month" class="center"><center></center></td>
+<td id="sain3month" class="center"><center></center></td>
+<td id="sain6month" class="center"><center></center></td>
+<td id="sain12month" class="center"><center></center></td>
+<td id="sain24month" class="center"><center></center></td>
+<td id="sain36month" class="center"><center></center></td>
+<td id="sain60month" class="center"><center></center></td>
+<td id="saintotal" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">PAR Entre 1 et 30 jours (10 %)</td>
+
+<td id="par11day" class="center"><center></center></td>
+<td id="par11week" class="center"><center></center></td>
+<td id="par11month" class="center"><center></center></td>
+<td id="par12month" class="center"><center></center></td>
+<td id="par13month" class="center"><center></center></td>
+<td id="par16month" class="center"><center></center></td>
+<td id="par112month" class="center"><center></center></td>
+<td id="par124month" class="center"><center></center></td>
+<td id="par136month" class="center"><center></center></td>
+<td id="par160month" class="center"><center></center></td>
+<td id="par1total" class="center"><center></center></td>
+</tr>
+<tr>
+
+<td  bgcolor="#98DB9C" class="center">PAR Entre 31 et 60 jours (40 %)</td>
+<td id="par301day" class="center"><center></center></td>
+<td id="par301week" class="center"><center></center></td>
+<td id="par301month" class="center"><center></center></td>
+<td id="par302month" class="center"><center></center></td>
+<td id="par303month" class="center"><center></center></td>
+<td id="par306month" class="center"><center></center></td>
+<td id="par3012month" class="center"><center></center></td>
+<td id="par3024month" class="center"><center></center></td>
+<td id="par3036month" class="center"><center></center></td>
+<td id="par3060month" class="center"><center></center></td>
+<td id="par30total" class="center"><center></center></td>
+</tr>
+
+<tr>
+<td  bgcolor="#98DB9C" class="center">PAR Entre 61 et 90 jours (70 %)</td>
+<td id="par601day" class="center"><center></center></td>
+<td id="par601week" class="center"><center></center></td>
+<td id="par601month" class="center"><center></center></td>
+<td id="par602month" class="center"><center></center></td>
+<td id="par603month" class="center"><center></center></td>
+<td id="par606month" class="center"><center></center></td>
+<td id="par6012month" class="center"><center></center></td>
+<td id="par6024month" class="center"><center></center></td>
+<td id="par6036month" class="center"><center></center></td>
+<td id="par6060month" class="center"><center></center></td>
+<td id="par60total" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">PAR Entre 91 et 120 jours (100 %)</td>
+<td id="par901day" class="center"><center></center></td>
+<td id="par901week" class="center"><center></center></td>
+<td id="par901month" class="center"><center></center></td>
+<td id="par902month" class="center"><center></center></td>
+<td id="par903month" class="center"><center></center></td>
+<td id="par906month" class="center"><center></center></td>
+<td id="par9012month" class="center"><center></center></td>
+<td id="par9024month" class="center"><center></center></td>
+<td id="par9036month" class="center"><center></center></td>
+<td id="par9060month" class="center"><center></center></td>
+<td id="par90total" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">PAR Entre 121 et 180 jours (100 %)</td>
+<td id="par1201day" class="center"><center></center></td>
+<td id="par1201week" class="center"><center></center></td>
+<td id="par1201month" class="center"><center></center></td>
+<td id="par1202month" class="center"><center></center></td>
+<td id="par1203month" class="center"><center></center></td>
+<td id="par1206month" class="center"><center></center></td>
+<td id="par12012month" class="center"><center></center></td>
+<td id="par12024month" class="center"><center></center></td>
+<td id="par12036month" class="center"><center></center></td>
+<td id="par12060month" class="center"><center></center></td>
+<td id="par120total" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">PAR >180 jours</td>
+<td id="par1801day" class="center"><center></center></td>
+<td id="par1801week" class="center"><center></center></td>
+<td id="par1801month" class="center"><center></center></td>
+<td id="par1802month" class="center"><center></center></td>
+<td id="par1803month" class="center"><center></center></td>
+<td id="par1806month" class="center"><center></center></td>
+<td id="par18012month" class="center"><center></center></td>
+<td id="par18024month" class="center"><center></center></td>
+<td id="par18036month" class="center"><center></center></td>
+<td id="par18060month" class="center"><center></center></td>
+<td id="par180total" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Restructuré - Sain (20%)</td>
+<td id="sainre1day" class="center"><center></center></td>
+<td id="sainre1week" class="center"><center></center></td>
+<td id="sainre1month" class="center"><center></center></td>
+<td id="sainre2month" class="center"><center></center></td>
+<td id="sainre3month" class="center"><center></center></td>
+<td id="sainre6month" class="center"><center></center></td>
+<td id="sainre12month" class="center"><center></center></td>
+<td id="sainre24month" class="center"><center></center></td>
+<td id="sainre36month" class="center"><center></center></td>
+<td id="sainre60month" class="center"><center></center></td>
+<td id="sainretotal" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Restructuré - PAR Entre 1 et 30 jours (50%))</td>
+<td id="par1re1day" class="center"><center></center></td>
+<td id="par1re1week" class="center"><center></center></td>
+<td id="par1re1month" class="center"><center></center></td>
+<td id="par1re2month" class="center"><center></center></td>
+<td id="par1re3month" class="center"><center></center></td>
+<td id="par1re6month" class="center"><center></center></td>
+<td id="par1re12month" class="center"><center></center></td>
+<td id="par1re24month" class="center"><center></center></td>
+<td id="par1re36month" class="center"><center></center></td>
+<td id="par1re60month" class="center"><center></center></td>
+<td id="par1retotal" class="center"><center></center></td>
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Restructuré/PAR >= 31 jours (100%)</td>
+<td id="par30re1day" class="center"><center></center></td>
+<td id="par30re1week" class="center"><center></center></td>
+<td id="par30re1month" class="center"><center></center></td>
+<td id="par30re2month" class="center"><center></center></td>
+<td id="par30re3month" class="center"><center></center></td>
+<td id="par30re6month" class="center"><center></center></td>
+<td id="par30re12month" class="center"><center></center></td>
+<td id="par30re24month" class="center"><center></center></td>
+<td id="par30re36month" class="center"><center></center></td>
+<td id="par30re60month" class="center"><center></center></td>
+<td id="par30retotal" class="center"><center></center></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+</body>
+</html>

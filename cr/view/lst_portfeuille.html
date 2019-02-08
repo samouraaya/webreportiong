@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_Portefeuille_';</script> 
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script>   
+</head>
+
+<body>
+
+
+<div id="row1">
+<center><legend>Etat du portefeuille de crédit</legend></center>
+    <table id="jqGrid" ></table>
+    <div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+var couleur = sessionStorage.getItem("couleur"); 
+$(document).ready(function () {
+
+		$("#jqGrid").jqGrid({
+		url:  "../controller/api/portfeuille?user="+couleur,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RIM',align:"center", name: 'rim',sorttype: 'integer'},
+			{ label: 'Client',width:150,align:"center", name: 'NomCLT'},
+			{ label: 'Cycle',width:30,align:"center", name: 'cycle',sorttype: 'integer'},
+			{ label: 'Produit',align:"center", name: 'produit' ,sorttype:"string",stype: "select", searchoptions: { value:"Tatouir:Tatouir;Moustakbali:Moustakbali;Takafol:Takafol"}},
+			{ label: 'Montant',width:50,align:"center", name: 'amt_financed',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:" ", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Durée',width:50,align:"center", name: 'duree'},
+			{ label: 'Date décaissement',align:"center",width:100, name: 'decaissement',sorttype: "date",searchoptions: {
+                           
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    //minDate: new Date(2010, 0, 1),
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+                            }
+                        }, formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+			{ label: 'Date Maturité',align:"center", name: 'Mat',sorttype: "date",searchoptions: {
+
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    //minDate: new Date(2010, 0, 1),
+                                    maxDate: new Date(2099, 0, 1),
+                                    showOn: 'focus'
+                                });
+                            }
+                        }, formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+			{ label: 'Encours ',align:"center", name: 'EncCap',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Nombre J retard', name: 'retard',align:"center"},              
+		],
+		pgbuttons: false,     // disable page control like next, back button
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: true,
+			  loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "EncCap", false, "sum");
+						sum2 = $self.jqGrid("getCol", "amt_financed", false, "sum");
+						count1 = $self.jqGrid("getCol", "amt_financed", false, "count");
+						sum1=parseFloat(sum1);
+						sum2=parseInt(sum2);
+						
+                    $self.jqGrid("footerData", "set", {produit: "Total en TND :",amt_financed: sum2, EncCap: sum1});
+					
+                }
+              
+				
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+						
+	 setPrintGrid('jqGrid','jqGridPager','Print');//setExportGrid('jqGrid','jqGridPager','Export');
+	    
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Etat du portefeuille de crédit </p><br></div></div>
+
+ 
+</body>
+</html>

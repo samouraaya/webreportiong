@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="assets/css/bootstrap.css" rel="stylesheet" />
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+</head>
+ <title class="defileParent">Webreporting - Advans Tunisie</title>
+<style>
+.separator {
+    border-right: 1px solid #dfdfe0; 
+}
+.icon-btn-save {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.input-group {
+    margin-bottom:10px; 
+}
+.btn-save-label {
+    position: relative;
+    left: -12px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 3px 0 0 3px;
+}
+body {
+    background-image: url("../img/background.jpg");
+	
+}
+.panel-body {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #449D44;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+</style>
+<script>
+var rsm = sessionStorage.getItem("couleur");
+var classcode = sessionStorage.getItem("classcode");
+ $(function () {
+        $("#something").on('click', function () {
+            if (classcode==310)
+				{
+				window.location.replace("../cc/view/accueil.html");
+				}
+			else if (classcode==300)
+				{
+				window.location.replace("../ac/view/accueil.html");
+				}
+			else if (classcode==520)
+				{
+				window.location.replace("../op/view/accueil.html");
+				}
+			else if ((classcode==700) || (classcode==720) || (classcode==730) || (classcode==800))
+				{
+				window.location.replace("../dg/view/accueil.html");
+				}
+			else if ((classcode==400) || (classcode==410))
+				{
+				window.location.replace("../da/view/accueil.html");
+				}
+        });
+    });
+
+
+var app = angular.module('sample', [])
+.controller('MainCtrl', function($scope) {
+		$scope.widget = {rsm: rsm};
+        
+
+    })
+    .directive('equalsTo', [function () {
+    return {
+        restrict: 'A', 
+        scope: true,
+        require: 'ngModel',
+        link: function (scope, elem, attrs, control) {
+            var check = function () {
+                var v1 = scope.$eval(attrs.ngModel); 
+                var v2 = scope.$eval(attrs.equalsTo).$viewValue; 
+                return v1 == v2;
+            };
+
+            scope.$watch(check, function (isValid) {
+                control.$setValidity("equalsTo", isValid);
+            });
+        }
+    };
+}]);
+
+</script>
+<body>
+<br><br><br><br><br>
+<div ng-app="sample" ng-controller="MainCtrl" class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-th"></span>
+                        Changer mot de passe  
+                    </h3>
+                </div>
+                <div class="panel-body">
+					<form class="form-horizontal" name="registerForm" method="post" action="pwd.php">
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 separator social-login-box"> <br>
+                           <img alt="" class="img-thumbnail" src="https://d13yacurqjgara.cloudfront.net/users/66224/screenshots/1609819/lock.jpg">                        
+                        </div>
+                        <div style="margin-top:30px;" class="col-xs-8 col-sm-8 col-md-8 login-box">
+						<div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                              <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="rsm" ng-value="widget.rsm" />
+                            </div>
+                          </div>
+                         <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                              <input id="Password" type="password" class="form-control" placeholder="Mot de passe Actuel"  name="Password" ng-value="password" />
+                            </div>
+                          </div>
+							<div class="form-group" ng-class="{'has-error': registerForm.$dirty && registerForm.newPassword.$invalid, 'has-success': registerForm.newPassword.$valid}">
+							<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+									<input id="newPassword" type="password" class="form-control" required ng-minlength="6" placeholder="Nouveau mot de passe"  name="newPassword" ng-model="newPassword" /> 
+									</div><span class="text-danger col-sm-offset-1" ng-show="registerForm.newPassword.$error.minlength">
+									Mot de passe trop court
+									</span>
+									
+							</div>
+							
+							<div class="form-group" ng-class="{'has-error': registerForm.$dirty && registerForm.ConfirmPassword.$invalid, 'has-success': registerForm.ConfirmPassword.$valid}">
+							<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+									<input id="ConfirmPassword" type="password" class="form-control" required equals-to="registerForm.newPassword" placeholder="Confirmer mot de passe" name="ConfirmPassword" ng-model="ConfirmPassword" />
+									</div> <span class="text-danger col-sm-offset-1" ng-show="!registerForm.ConfirmPassword.$error.required && registerForm.ConfirmPassword.$error.equalsTo">
+									Les mots de passe ne sont pas identiques
+									</span>		
+									</div>
+							</div>
+
+                        </div>
+                    </div>
+					 <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <button class="btn icon-btn-save btn-success" type="submit" ng-disabled="registerForm.$invalid">
+                            <span class="btn-save-label"><i class="glyphicon glyphicon-floppy-disk"></i></span>Enregistrer</button></form>
+							<button class="btn icon-btn-save btn-danger" id="something">
+                            <span class="btn-save-label" ><i class="glyphicon glyphicon glyphicon-remove-circle" ></i></span>Annuler</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+               
+				
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+</html>

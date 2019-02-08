@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="../../js/fn_prod.js"></script>
+<script type="text/javascript" src="../../js/fn_totaux_prod.js"></script>
+<style>
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+	.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:16px;
+}
+</style>
+</head>
+
+<body bgcolor="#DCDCDC">
+		<div class="col-md-12">
+			<div class="col-md-9"><legend>Productivité Par Agence</legend></div>
+		</div>
+	<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onClick ="$('#table').tableExport({type:'excel',escape:'false',tableName:'Prodcutivite'});" width='24px'> Excel</a>
+						</li>	
+						
+						</div>		
+	<table class="table table-bordered" id="table">
+		<tr>
+		<td width="20%"><center>Agence</center></td>
+		<td bgcolor="#B0CC99" width="20%"><center>110</center></td>
+		<td  bgcolor="#B0CC99" width="20%"><center>120</center></td>
+		<td  bgcolor="#B0CC99" width="20%"><center>130</center></td>
+		<td  bgcolor="#B0CC99" width="20%"><center>Total</center></td>
+		</tr>
+
+<tr>
+	<td bgcolor="#F6E497"> Nbre - Décaissements du mois</td>
+	<td id="nbdecmois110" class="center"></td>
+	<td id="nbdecmois120" class="center"></td>
+	<td id="nbdecmois130" class="center"></td>
+	<td id="nbdecmoistotal" class="center"></td>
+ </tr>
+ 
+<tr>
+	<td bgcolor="#F6E497">Volume - Décaissements du mois</td>
+	<td id="vldecmois110" class="center"></td>
+	<td id="vldecmois120" class="center"><center></center></td>
+	<td id="vldecmois130" class="center"><center></center></td>
+	<td id="vldecmoistotal" class="center"><center></center></td>
+</tr>
+	
+<tr>
+	<td bgcolor="#F6E497">Nbre - Encours</td>
+	<td id="nbencmois110" class="center"></td>
+	<td id="nbencmois120" class="center"><center></center></td>
+	<td id="nbencmois130" class="center"><center></center></td>
+	<td id="nbencmoistotal" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497">Volume - Encours</td>
+	<td id="vlencmois110" class="center"></td>
+	<td id="vlencmois120" class="center"><center></center></td>
+	<td id="vlencmois130" class="center"><center></center></td>
+	<td id="vlencmoistotal" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497">Durée de traitement</td>
+	<td id="nbavgtrait110" class="center"></td>
+	<td id="nbavgtrait120" class="center"><center></center></td>
+	<td id="nbavgtrait130" class="center"><center></center></td>
+	<td id="nbavgtraittotal" class="center"><center></center></td>
+</tr>
+
+
+
+
+</table> 

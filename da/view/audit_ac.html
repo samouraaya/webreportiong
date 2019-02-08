@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html >
+
+<head>
+<script type="text/javascript" src="../../js/audit_ac_da.js"></script>
+<style>
+
+            .ui-jqgrid .ui-jqgrid-caption 
+            {
+				font-size: 13px;
+            }
+        </style>
+</head>
+
+<body>
+<h2><span class="glyphicon glyphicon-move" ></span> Tableau de bord AC</h2>
+<br>
+<div class="col-md-2">	
+		<div class="well ">
+    <legend  style="color:#006B2C"><font size="3"><b>NB de Création prospect</b></font></legend>
+    <input type="text" class="form-control" readonly id="lead_crees"> 
+  </div>
+   </div>
+  
+<div class="col-md-2">	
+		<div class="well ">
+    <legend  style="color:#006B2C"><font size="3"><b>NB de Création RIM </b></font></legend>
+    <input type="text" class="form-control" readonly id="rm_crees"> 
+  </div>
+   </div>
+   
+<div class="col-md-2">	
+		<div class="well ">
+    <legend  style="color:#006B2C"><font size="3"><b>NB de Création de demande </b></font></legend>
+    <input type="text" class="form-control" readonly id="la_disbursed">  
+  </div>
+   </div>
+<div class="col-md-2">	
+		<div class="well ">
+    <legend  style="color:#006B2C"><font size="3"><b>NB de décaissements</b></font></legend>
+    <input type="text" class="form-control" readonly id="li_crees"> 
+  </div>
+   </div>
+   <div class="col-md-2">	
+		<div class="well ">
+    <legend  style="color:#006B2C"><font size="3"><b>Demandes clôturées </b></font></legend>
+    <input type="text" class="form-control" readonly id="la_closed"> 
+  </div>
+   </div>
+      <div class="col-md-2">	
+		<div class="well ">
+    <legend  style="color:#006B2C"><font size="3"><b> Demandes passées en reviewed </b></font></legend>
+    <input type="text" class="form-control" readonly id="la_reviewed"> 
+  </div>
+   </div>
+   <div class="col-md-12">
+	<table id="jqGrid" ></table>
+    <div id="jqGridPager" style="position:relative;"></div>
+	<script type="text/javascript"> 
+	var agence = sessionStorage.getItem("agence");
+	$(document).ready(function () {
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_synthese_audit?agence="+agence,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:100,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:60,align:"center", name: 'branch_no',sorttype: 'integer'},
+			{ label: 'NB de Création prospect ',width:60,align:"center",name:'nbprospect',sorttype: 'integer'},
+			{ label: 'NB de Création RIM ',width:60,align:"center", name: 'NbRIM'},
+			{ label: 'NB de Création de demande',width:50,align:"center", name: 'NbDisb'},
+			{ label: 'NB de décaissements',width:50,align:"center", name: 'NbLi'},
+			{ label: 'Passage en reviewed ',width:50,align:"center", name: 'NbRev'},
+			{ label: 'Prets cloturés',width:50,align:"center", name: 'NbClot'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		caption: "Mois En Cours",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							nbprospect = $self.jqGrid("getCol", "nbprospect", false, "avg");
+							NbRIM = $self.jqGrid("getCol", "NbRIM", false, "avg");
+							NbDisb = $self.jqGrid("getCol", "NbDisb", false, "avg");
+							NbLi = $self.jqGrid("getCol", "NbLi", false, "avg");
+							NbRev = $self.jqGrid("getCol", "NbRev", false, "avg");
+							NbClot = $self.jqGrid("getCol", "NbClot", false, "avg");
+						
+							nbprospect=parseInt(nbprospect);
+							NbRIM=parseInt(NbRIM);
+							NbDisb=parseInt(NbDisb);
+							NbLi=parseInt(NbLi);
+							NbRev=parseInt(NbRev);
+							NbClot=parseInt(NbClot);
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, nbprospect: nbprospect
+														, NbRIM: NbRIM
+														, NbDisb: NbDisb
+														, NbLi: NbLi
+														, NbRev: NbRev
+														, NbClot: NbClot});
+					
+					
+                }
+				
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+ </script>
+  </div>
+  <div class="col-md-12">
+	<table id="jqGrid1" ></table>
+    <div id="jqGridPager1" style="position:relative;"></div>
+	<script type="text/javascript"> 
+	var agence = sessionStorage.getItem("agence");
+	$(document).ready(function () {
+
+		$("#jqGrid1").jqGrid({
+		url: "../controller/api/fn_synthese_audit_m_1?agence="+agence,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:100,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:60,align:"center", name: 'branch_no',sorttype: 'integer'},
+			{ label: 'NB de Création prospect ',width:60,align:"center",name:'nbprospect',sorttype: 'integer'},
+			{ label: 'NB de Création RIM ',width:60,align:"center", name: 'NbRIM'},
+			{ label: 'NB de Création de demande',width:50,align:"center", name: 'NbDisb'},
+			{ label: 'NB de décaissements',width:50,align:"center", name: 'NbLi'},
+			{ label: 'Passage en reviewed ',width:50,align:"center", name: 'NbRev'},
+			{ label: 'Prets cloturés',width:50,align:"center", name: 'NbClot'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager1",
+		caption: "Mois dernier",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							nbprospect = $self.jqGrid("getCol", "nbprospect", false, "avg");
+							NbRIM = $self.jqGrid("getCol", "NbRIM", false, "avg");
+							NbDisb = $self.jqGrid("getCol", "NbDisb", false, "avg");
+							NbLi = $self.jqGrid("getCol", "NbLi", false, "avg");
+							NbRev = $self.jqGrid("getCol", "NbRev", false, "avg");
+							NbClot = $self.jqGrid("getCol", "NbClot", false, "avg");
+						
+							nbprospect=parseInt(nbprospect);
+							NbRIM=parseInt(NbRIM);
+							NbDisb=parseInt(NbDisb);
+							NbLi=parseInt(NbLi);
+							NbRev=parseInt(NbRev);
+							NbClot=parseInt(NbClot);
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, nbprospect: nbprospect
+														, NbRIM: NbRIM
+														, NbDisb: NbDisb
+														, NbLi: NbLi
+														, NbRev: NbRev
+														, NbClot: NbClot});
+					
+					
+                }
+				
+	});
+	$("#jqGrid1").jqGrid('navGrid','#jqGridPager1',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+ </script>
+  </div>
+    <div class="col-md-12">
+	<table id="jqGrid2" ></table>
+    <div id="jqGridPager2" style="position:relative;"></div>
+	<script type="text/javascript"> 
+	var agence = sessionStorage.getItem("agence");
+	$(document).ready(function () {
+
+		$("#jqGrid2").jqGrid({
+		url: "../controller/api/fn_synthese_audit_week?agence="+agence,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:100,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:60,align:"center", name: 'branch_no',sorttype: 'integer'},
+			{ label: 'NB de Création prospect ',width:60,align:"center",name:'nbprospect',sorttype: 'integer'},
+			{ label: 'NB de Création RIM ',width:60,align:"center", name: 'NbRIM'},
+			{ label: 'NB de Création de demande',width:50,align:"center", name: 'NbDisb'},
+			{ label: 'NB de décaissements',width:50,align:"center", name: 'NbLi'},
+			{ label: 'Passage en reviewed ',width:50,align:"center", name: 'NbRev'},
+			{ label: 'Prets cloturés',width:50,align:"center", name: 'NbClot'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager2",
+		caption: "Semaine En cours",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							nbprospect = $self.jqGrid("getCol", "nbprospect", false, "avg");
+							NbRIM = $self.jqGrid("getCol", "NbRIM", false, "avg");
+							NbDisb = $self.jqGrid("getCol", "NbDisb", false, "avg");
+							NbLi = $self.jqGrid("getCol", "NbLi", false, "avg");
+							NbRev = $self.jqGrid("getCol", "NbRev", false, "avg");
+							NbClot = $self.jqGrid("getCol", "NbClot", false, "avg");
+						
+							nbprospect=parseInt(nbprospect);
+							NbRIM=parseInt(NbRIM);
+							NbDisb=parseInt(NbDisb);
+							NbLi=parseInt(NbLi);
+							NbRev=parseInt(NbRev);
+							NbClot=parseInt(NbClot);
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, nbprospect: nbprospect
+														, NbRIM: NbRIM
+														, NbDisb: NbDisb
+														, NbLi: NbLi
+														, NbRev: NbRev
+														, NbClot: NbClot});
+					
+					
+                }
+				
+	});
+	$("#jqGrid2").jqGrid('navGrid','#jqGridPager2',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+ </script>
+  </div>
+  
+  <div class="col-md-12">
+	<table id="jqGrid3" ></table>
+    <div id="jqGridPager3" style="position:relative;"></div>
+	<script type="text/javascript"> 
+	var agence = sessionStorage.getItem("agence");
+	$(document).ready(function () {
+
+		$("#jqGrid3").jqGrid({
+		url: "../controller/api/fn_synthese_audit_week_1?agence="+agence,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:100,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:60,align:"center", name: 'branch_no',sorttype: 'integer'},
+			{ label: 'NB de Création prospect ',width:60,align:"center",name:'nbprospect',sorttype: 'integer'},
+			{ label: 'NB de Création RIM ',width:60,align:"center", name: 'NbRIM'},
+			{ label: 'NB de Création de demande',width:50,align:"center", name: 'NbDisb'},
+			{ label: 'NB de décaissements',width:50,align:"center", name: 'NbLi'},
+			{ label: 'Passage en reviewed ',width:50,align:"center", name: 'NbRev'},
+			{ label: 'Prets cloturés',width:50,align:"center", name: 'NbClot'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 300,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager3",
+		caption: "Semaine derniere",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							nbprospect = $self.jqGrid("getCol", "nbprospect", false, "avg");
+							NbRIM = $self.jqGrid("getCol", "NbRIM", false, "avg");
+							NbDisb = $self.jqGrid("getCol", "NbDisb", false, "avg");
+							NbLi = $self.jqGrid("getCol", "NbLi", false, "avg");
+							NbRev = $self.jqGrid("getCol", "NbRev", false, "avg");
+							NbClot = $self.jqGrid("getCol", "NbClot", false, "avg");
+						
+							nbprospect=parseInt(nbprospect);
+							NbRIM=parseInt(NbRIM);
+							NbDisb=parseInt(NbDisb);
+							NbLi=parseInt(NbLi);
+							NbRev=parseInt(NbRev);
+							NbClot=parseInt(NbClot);
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, nbprospect: nbprospect
+														, NbRIM: NbRIM
+														, NbDisb: NbDisb
+														, NbLi: NbLi
+														, NbRev: NbRev
+														, NbClot: NbClot});
+					
+					
+                }
+				
+	});
+	$("#jqGrid3").jqGrid('navGrid','#jqGridPager3',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+ </script>
+  </div>
+  
+  
+  <div class="col-md-12">
+	<table id="jqGrid4" ></table>
+    <div id="jqGridPager4" style="position:relative;"></div>
+	<script type="text/javascript"> 
+	var agence = sessionStorage.getItem("agence");
+	$(document).ready(function () {
+
+		$("#jqGrid4").jqGrid({
+		url: "../controller/api/fn_stock_relance_ac_agence?agence="+agence,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:100,align:"center", name:'name',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Stock Prospect ',width:60,align:"center",name:'TotalActif',sorttype: 'integer'},
+			{ label: 'NB relance Mois en cours',width:60,align:"center", name: 'NbRelance'},
+			{ label: 'NB relance semaine encours',width:60,align:"center", name: 'RELANCEWEEK'},
+			{ label: 'NB relance semaine derniere ',width:60,align:"center", name: 'RELANCEWEEK1'},
+			{ label: 'NB relance mois dernier',width:60,align:"center", name: 'RELANCEMONTH1'},
+						
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 400,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager4",
+		caption: "Stock/Relance",
+		hiddengrid: true,
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+							TotalActif = $self.jqGrid("getCol", "TotalActif", false, "avg");
+							NbRelance = $self.jqGrid("getCol", "NbRelance", false, "avg");
+
+						
+							TotalActif=parseInt(TotalActif);
+							NbRelance=parseInt(NbRelance);
+
+
+						
+                    $self.jqGrid("footerData", "set", {name: "Moyenne:"
+														, TotalActif: TotalActif
+														, NbRelance: NbRelance});
+					
+					
+                }
+				
+	});
+	$("#jqGrid4").jqGrid('navGrid','#jqGridPager4',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+ </script>
+  </div>
+</body>
+
+</html>

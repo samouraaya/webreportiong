@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script type="text/javascript" src="../../js/fn_reporting.js" async></script>
+<style>
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:16px;
+}
+input[type="text"], textarea {
+
+  background-color : #d1d1d1; 
+
+}
+body {
+    background-color: #f5f5f5;
+}
+input {
+text-align: center;
+}
+</style>
+  
+</head>
+
+<body  bgcolor="#DCDCDC">
+
+<div class="col-md-12">	
+	
+		<div class="col-md-8"><legend>Reporting opérationnel quotidien</legend>
+		</div>
+		</div>
+		
+		<div class="col-md-12">
+	
+		<table class="table table-bordered">
+		<tr>
+			<th width="10%"></th>
+			<th bgcolor="#B0CC99" width="20%"><center>Description</center></th>
+			<th  bgcolor="#B0CC99" width="15%"><center>Agence 100</center></th>
+			<th  bgcolor="#B0CC99" width="15%"><center>Agence 110</center></th>
+			<th  bgcolor="#B0CC99" width="15%"><center>Agence 120</center></th>
+			<th  bgcolor="#B0CC99" width="15%"><center>Agence 130</center></th>
+			<th  bgcolor="#C79F4B" width="10%"><center>Total (Siège inclus)</center></th>
+		</tr>
+<tr >
+	<td rowspan="8" align="center" valign="MIDDLE" bgcolor="#F6E497"><b>CREDITS</b> </td>
+	<td>Encours total</td>
+	<td id="encours100" class="center"><center></center></td>
+	<td id="encours110" class="center"><center></center></td>
+	<td id="encours120" class="center"><center></center></td>
+	<td id="encours130" class="center"><center></center></td>
+	<td id="totalencours" class="center"><center></center></td>  
+</tr>
+<tr>
+	<td>Nb crédits actifs</td>
+	<td id="cltact100" class="center"><center></center></td>
+	<td id="cltact110" class="center"><center></center></td>
+	<td id="cltact120" class="center"><center></center></td>
+	<td id="cltact130" class="center"><center></center></td> 
+	<td id="totalclt" class="center"><center></center></td>   
+</tr>
+<tr>
+	<td>Nb de prêts décaissés aujourd'hui</td>
+	<td id="nbdecauj100" class="center"><center>-</center></td>
+	<td id="nbdecauj110" class="center"><center></center></td>
+	<td id="nbdecauj120" class="center"><center></center></td>
+	<td id="nbdecauj130" class="center"><center></center></td>
+	<td id="totaldecauj" class="center" ><center></center></td>
+</tr>
+<tr>
+	<td>Volume de prêts décaissés aujourd'hui</td>
+	<td id="vldecauj100" class="center"><center>-</center></td>
+	<td id="vldecauj110" class="center"><center></center></td>
+	<td id="vldecauj120" class="center"><center></center></td>
+	<td id="vldecauj130" class="center"><center></center></td>
+	<td id="totalvldecauj" class="center"><center></center></td>
+</tr>
+<tr>
+	<td>% échéances payées à temps </td>
+	<td id="per100" class="center"><center></center></td>
+	<td id="per110" class="center"><center></center></td>
+	<td id="per120" class="center"><center></center></td>
+	<td id="per130" class="center"><center></center></td>
+	<td id="totalper" class="center"><center></center></td>
+</tr>
+<tr>
+	<td>incl. Échéances attendues </td>
+	<td id="nbech100" class="center"><center></center></td>
+	<td id="nbech110" class="center"><center></center></td>
+	<td id="nbech120" class="center"><center></center></td>
+	<td id="nbech130" class="center"><center></center></td>
+	<td id="totalech" class="center"><center></center></td>
+</tr>
+<tr>
+	<td>Incl. Échéances impayées </td>
+	<td id="nbechimp100" class="center"><center></center></td>
+	<td id="nbechimp110" class="center"><center></center></td>
+	<td id="nbechimp120" class="center"><center></center></td>
+	<td id="nbechimp130" class="center"><center></center></td>
+	<td id="totalnbechimp" class="center"><center></center></td>
+</tr>
+
+</table> 
+
+		<table class="table table-bordered">
+		<tr>
+			<th width="10%"></th>
+			<th bgcolor="#B0CC99" width="20%"><center>Description</center></th>
+			<th colspan="3" bgcolor="#B0CC99" width="15%"><center>Agence 100</center></th>
+			<th colspan="3" bgcolor="#B0CC99" width="15%"><center>Agence 110</center></th>
+			<th colspan="3" bgcolor="#B0CC99" width="15%"><center>Agence 120</center></th>
+			<th colspan="3" bgcolor="#B0CC99" width="15%"><center>Agence 130</center></th>
+			<th colspan="3" bgcolor="#C79F4B" width="20%"><center>Total (Siège inclus)</center></th>
+		</tr>
+		
+		<tr>
+			<td rowspan="7" bgcolor="#F6E497"><center><b>Qualité du portefeuille</b></center></td>
+		</tr>
+    <tr>
+		<td> </td> 
+		<td><center>#</center></td> 
+		<td><center>Volume</center></td> 
+		<td><center>%</center></td>  
+		<td><center>#</center></td> 
+		<td><center>Volume</center></td> 
+		<td><center>%</center></td>  
+		<td><center>#</center></td> 
+		<td><center>Volume</center></td> 
+		<td><center>%</center></td> 
+		<td><center>#</center></td> 
+		<td><center>Volume</center></td> 
+		<td><center>%</center></td> 
+		<td><center>#</center></td> 
+		<td><center>Volume</center></td> 
+		<td><center>%</center></td>
+	</tr>
+	
+	<tr>
+	
+		<td>PAR 0</td> 
+		<TD id="nbpar0100" 	class="center"><center></center></TD>
+		<TD id="vlpar0100" 	class="center"><center></center></TD>
+		<TD id="perpar100" class="center"><center></center></TD>
+		<TD id="nbpar0110" 	class="center"><center></center></TD>
+		<TD id="vlpar0110" 	class="center"><center></center></TD>
+		<TD id="perpar0100" class="center"><center></center></TD>
+		<TD id="nbpar0120" 	class="center"><center></center></TD>
+		<TD id="vlpar0120"	class="center"><center></center></TD>
+		<TD id="perpar0120" class="center"><center></center></TD>
+		<TD id="nbpar0130" 	class="center"><center></center></TD>
+		<TD id="vlpar0130" 	class="center"><center></center></TD>
+		<TD id="perpar0130" class="center"><center></center></TD>
+		<TD id="totalnbpar0"class="center"><center></center></TD>
+		<TD id="totalvlpar0"class="center"><center></center></TD>
+		<TD id="perpar0total" class="center"><center></center></TD>
+		
+	</tr>
+	
+	<tr>
+	
+	<td>PAR 7</td> 
+		<TD id="nbpar7100" class="center"><center></center></TD>
+		<TD id="vlpar7100" class="center"><center></center></TD>
+		<TD id="perpar710" class="center"><center></center></TD>
+		<TD id="nbpar7110" class="center"><center></center></TD>
+		<TD id="vlpar7110" class="center"><center></center></TD>
+		<TD id="perpar7100" class="center"><center></center></TD>
+		<TD id="nbpar7120" class="center"><center></center></TD>
+		<TD id="vlpar7120" class="center"><center></center></TD>
+		<TD id="perpar7120" class="center"><center></center></TD>
+		<TD id="nbpar7130" class="center"><center></center></TD>
+		<TD id="vlpar7130" class="center"><center></center></TD>
+		<TD id="perpar7130" class="center"><center></center></TD>
+		<TD id="totalnbpar7"class="center"><center></center></TD>
+		<TD id="totalvlpar7"class="center"><center></center></TD>
+		<TD id="perpar7total" class="center"><center></center></TD>
+		
+	</tr>
+	<tr>
+	
+	<td>PAR 30</td> 
+		<TD id="nbpar30100" class="center"><center></center></TD>
+		<TD id="vlpar30100" class="center"><center></center></TD>
+		<TD id="perpar3010" class="center"><center></center></TD>
+		<TD id="nbpar30110" class="center"><center></center></TD>
+		<TD id="vlpar30110" class="center"><center></center></TD>
+		<TD id="perpar30100" class="center"><center></center></TD>
+		<TD id="nbpar30120" class="center"><center></center></TD>
+		<TD id="vlpar30120" class="center"><center></center></TD>
+		<TD id="perpar30120" class="center"><center></center></TD>
+		<TD id="nbpar30130" class="center"><center></center></TD>
+		<TD id="vlpar30130" class="center"><center></center></TD>
+		<TD id="perpar30130" class="center"><center></center></TD>
+		<TD id="totalnbpar30"class="center"><center></center></TD>
+		<TD id="totalvlpar30"class="center"><center></center></TD>
+		<TD id="perpar30total" class="center"><center></center></TD>
+		
+	</tr>
+	
+	<tr>
+	
+	<td>PAR 90</td>
+		<TD id="nbpar90100" class="center"><center></center></TD>
+		<TD id="vlpar90100" class="center"><center></center></TD>
+		<TD id="perpar9010" class="center"><center></center></TD>
+		<TD id="nbpar90110" class="center"><center></center></TD>
+		<TD id="vlpar90110" class="center"><center></center></TD>
+		<TD id="perpar90100" class="center"><center></center></TD>
+		<TD id="nbpar90120" class="center"><center></center></TD>
+		<TD id="vlpar90120" class="center"><center></center></TD>
+		<TD id="perpar90120" class="center"><center></center></TD>
+		<TD id="nbpar90130" class="center"><center></center></TD>
+		<TD id="vlpar90130" class="center"><center></center></TD>
+		<TD id="perpar90130" class="center"><center></center></TD>
+		<TD id="totalnbpar90"class="center"><center></center></TD>
+		<TD id="totalvlpar90"class="center"><center></center></TD>
+		<TD id="perpar90total" class="center"><center></center></TD>
+		
+	</tr>
+</table> 
+
+		<table class="table table-bordered">
+	<tr>
+		<th width="10%"></th>
+		<th bgcolor="#B0CC99" width="20%"><center>Description</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 110</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 120</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 130</center></th>
+		<th  bgcolor="#C79F4B" width="15%"><center>Total</center></th>
+	</tr>
+	
+	<tr>
+		<td rowspan="20" align="center" valign="MIDDLE" bgcolor="#F6E497"><b>Demande</b> </td> 
+		<td>Nb nouvelles demandes de prêt</td>
+		<td id="nbdmd110" class="center"><center></center></td>
+		<td id="nbdmd120" class="center"><center></center></td>
+		<td id="nbdmd130" class="center"><center></center></td>
+		<td id="nbdmdtot" class="center"><center></center></td>
+	</tr>
+
+	<tr>
+		<td>Volume nouvelles demandes de prêt</td>
+		<td id="vldmd110" class="center"><center ></center></td>
+		<td id="vldmd120" class="center"><center ></center></td>
+		<td id="vldmd130" class="center"><center ></center></td>
+		<td id="vldmdtot" class="center"><center></center></td>
+	</tr>
+
+	<tr>
+		<td>Nb demandes closed</td>
+		<td id="clodmd110" class="center"><center ></center></td>
+		<td id="clodmd120" class="center"><center ></center></td>
+		<td id="clodmd130" class="center"><center ></center></td>
+		<td id="clodmdtot" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td>Stock de demandes (nombre)</td>
+		
+		<td id="stock110dmd" class="center"><center ></center></td>
+		<td id="stock120dmd" class="center"><center ></center></td>
+		<td id="stock130dmd" class="center"><center ></center></td>
+		<td id="stocktotaldmd" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td align="right">incl. Pending</td>
+		<td id="pendmd110" class="center"><center ></center></td>
+		<td id="pendmd120" class="center"><center ></center></td>
+		<td id="pendmd130" class="center"><center ></center></td>
+		<td id="stockpendmd" class="center"><center></center></td>
+	</tr>
+
+	<tr>
+		<td align="right">incl. Reviewed</td>
+		<td id="revdmd110" class="center"><center ></center></td>
+		<td id="revdmd120" class="center"><center ></center></td>
+		<td id="revdmd130" class="center"><center ></center></td>
+		<td id="stockrevdmd" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td align="right">incl. Approved</td>
+		<td id="appdmd110" class="center"><center ></center></td>
+		<td id="appdmd120" class="center"><center ></center></td>
+		<td id="appdmd130" class="center"><center ></center></td>
+		<td id="stockappdmd" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td>Stock de demandes (volume)</td>
+		<td id="vlstock110dmd" class="center"><center ></center></td>
+		<td id="vlstock120dmd" class="center"><center ></center></td>
+		<td id="vlstock130dmd" class="center"><center ></center></td>
+		<td id="vlstocktotaldmd" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td align="right">incl. Pending</td>
+		<td id="vlpendmd110" class="center"><center ></center></td>
+		<td id="vlpendmd120" class="center"><center ></center></td>
+		<td id="vlpendmd130" class="center"><center ></center></td>
+		<td id="vlstockpendmd" class="center"><center></center></td>
+	</tr>
+
+	<tr>
+		<td align="right">incl. Reviewed</td>
+		<td id="vlrevdmd110" class="center"><center ></center></td>
+		<td id="vlrevdmd120" class="center"><center ></center></td>
+		<td id="vlrevdmd130" class="center"><center ></center></td>
+		<td id="vlstockrevdmd" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td align="right">incl. Approved</td>
+		<td id="vlappdmd110" class="center"><center ></center></td>
+		<td id="vlappdmd120" class="center"><center ></center></td>
+		<td id="vlappdmd130" class="center"><center ></center></td>
+		<td id="vlstockappdmd" class="center"><center></center></td>
+	</tr>
+	<tr>
+		<td align="right">Délai de Traitement</td>
+		<td id="delai110" class="center"><center ></center></td>
+		<td id="delai120" class="center"><center ></center></td>
+		<td id="delai130" class="center"><center ></center></td>
+		<td id="totaldelai" class="center"><center></center></td>
+	</tr>
+</table> 	
+		
+		<table class="table table-bordered">
+	<tr>
+		<th width="10%"></th>
+		<th bgcolor="#B0CC99" width="20%"><center>Description</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 110</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 120</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 130</center></th>
+		<th  bgcolor="#C79F4B" width="15%"><center>Total</center></th>
+	</tr>
+	
+	<tr>
+		<td rowspan="4" bgcolor="#F6E497"><center><b>CUMUL DEPUIS LE DEBUT DE SEMAINE</b></center></td> 
+		<td>Nb de nouvelles demandes de prêt</td> 
+		<td id="nbdmd110week" class="center"><center ></center></td>
+		<td id="nbdmd120week" class="center"><center ></center></td>
+		<td id="nbdmd130week" class="center"><center ></center></td>
+		<td id="nbdmdtotalweek" class="center"><center></center></td> 
+	</tr>
+	
+	<tr>
+		<td>Nbr crédits décaissés</td> 
+		<td id="nbcr110week" class="center"><center ></center></td>
+		<td id="nbcr120week" class="center"><center ></center></td>
+		<td id="nbcr130week" class="center"><center ></center></td>
+		<td id="nbcrtotalweek" class="center"><center></center></td>  
+	</tr>
+	
+	<tr>
+		<td>Volume crédits décaissés</td> 
+		<td id="vlcr110week" class="center"><center ></center></td>
+		<td id="vlcr120week" class="center"><center ></center></td>
+		<td id="vlcr130week" class="center"><center ></center></td>
+		<td id="vlcrtotalweek" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td>Montant moyen décaissé</td> 
+		<td id="moycr110week" class="center"><center></center></td>
+		<td id="moycr120week" class="center"><center></center></td>
+		<td id="moycr130week" class="center"><center></center></td>
+		<td id="moycrtotweek" class="center"><center></center></td>  
+	</tr>
+	
+</table> 			  
+
+		<table class="table table-bordered">
+	<tr>
+		<th width="10%"></th>
+		<th bgcolor="#B0CC99" width="20%"><center>Description</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 110</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 120</center></th>
+		<th  bgcolor="#B0CC99" width="15%"><center>Agence 130</center></th>
+		<th  bgcolor="#C79F4B" width="15%"><center>Total</center></th>
+	</tr>
+	
+	<tr>
+		<td rowspan="4" bgcolor="#F6E497"><center><b>CUMUL DEPUIS LE DEBUT DU MOIS</b></center></td> 
+		<td>Nb de nouvelles demandes de prêt</td> 
+		<td id="nbdmd110month" class="center"><center ></center></td>
+		<td id="nbdmd120month" class="center"><center ></center></td>
+		<td id="nbdmd130month" class="center"><center ></center></td>
+		<td id="nbdmdtotalmonth" class="center"><center></center></td> 
+	</tr>
+	
+	<tr>
+		<td>Nbr crédits décaissés</td> 
+		<td id="nbcr110month" class="center"><center ></center></td>
+		<td id="nbcr120month" class="center"><center ></center></td>
+		<td id="nbcr130month" class="center"><center ></center></td>
+		<td id="nbcrtotalmonth" class="center"><center></center></td>   
+	</tr>
+	
+	<tr>
+		<td>Volume crédits décaissés</td> 
+		<td id="vlcr110month" class="center"><center ></center></td>
+		<td id="vlcr120month" class="center"><center ></center></td>
+		<td id="vlcr130month" class="center"><center ></center></td>
+		<td id="vlcrtotalmonth" class="center"><center></center></td>
+	</tr>
+	
+	<tr>
+		<td>Montant moyen décaissé</td> 
+		<td id="moycr110month" class="center"><center></center></td>
+		<td id="moycr120month" class="center"><center></center></td>
+		<td id="moycr130month" class="center"><center></center></td>
+		<td id="moycrtotmonth" class="center"><center></center></td>  
+	</tr>
+	
+</table> 				 
+		</div>
+		</div>
+		</div>	
+<script type="text/javascript" src="../../js/fn_totaux_ro.js" async></script>
+</body>
+</html>

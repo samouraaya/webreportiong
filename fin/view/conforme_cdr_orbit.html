@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../../js/cdr_orbit.js" async ></script>
+<script type="text/javascript" src="../../js/xlsx.core.min.js"></script>
+<script type="text/javascript" src="../../js/Blob.js"></script>
+<script type="text/javascript" src="../../js/FileSaver.js"></script>
+<script type="text/javascript" src="../../js/Export2Excel.js"></script>
+<script>var s='6_DOC_Liste_detail_Penalite_';</script>
+<script>
+function doit() { export_table_to_excel('table','Test de conformité CDR vs ORBIT'); }
+</script>
+
+<style type="text/css">
+
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:11px;
+}
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+  </style>
+</head>
+
+
+
+<body>
+
+		<div class="row1">
+<legend> <span class="glyphicon glyphicon-bitcoin" ></span> Test de conformité CDR vs ORBIT</legend>
+<div class="row1">
+<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onclick="doit();" width='24px'> Excel</a>
+						</li>	
+						
+						</div>	
+
+<table id="table" class="table table-striped">
+  <tr>
+    <th class="tg-031e"></th>
+    <th class="tg-yw4l" colspan="2"><center>DECLARATION CRM</center></th>
+    <th class="tg-yw4l" colspan="2"><center>ORBIT</center></th>
+    <th class="tg-yw4l" colspan="2"><center>Ecart</center></th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"><center><b>Designation</b></center></td>
+    <td class="tg-yw4l"> Nombre </td>
+    <td class="tg-yw4l"> Montant </td>
+    <td class="tg-yw4l"> Nombre </td>
+    <td class="tg-yw4l"> Montant </td>
+    <td class="tg-yw4l"> Nombre </td>
+    <td class="tg-yw4l"> Montant </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"><center><b>Décaissement</b></center></td>
+    <td class="tg-yw4l" id="DISNBCDR"><center></center></td>
+    <td class="tg-yw4l" id="DISVOLCDR"><center></center></td>
+    <td class="tg-yw4l" id="DISNBORBIT"><center></center></td>
+    <td class="tg-yw4l" id="DISVOLORBIT"><center></center></td>
+    <td class="tg-yw4l" id="DISNBECART"><center></center></td>
+    <td class="tg-yw4l" id="DISVOLECART"><center></center></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"><center><b>Encours</b></center></td>
+    <td class="tg-yw4l" id="OUTNBCDR"><center></center></td>
+    <td class="tg-yw4l" id="OUTVOLCDR"><center></center></td>
+    <td class="tg-yw4l" id="OUTNBORBIT"><center></center></td>
+    <td class="tg-yw4l" id="OUTVOLORBIT"><center></center></td>
+    <td class="tg-yw4l" id="OUTNBECART"><center></center></td>
+    <td class="tg-yw4l" id="OUTVOLECART"><center></center></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"><center><b>PAR</b></center></td>
+    <td class="tg-yw4l" id="PARNBCDR"><center></center></td>
+    <td class="tg-yw4l" id="PARVOLCDR"><center></center></td>
+    <td class="tg-yw4l" id="PARNBORBIT"><center></center></td>
+    <td class="tg-yw4l" id="PARVOLORBIT"><center></center></td>
+    <td class="tg-yw4l" id="PARNBECART"><center></center></td>
+    <td class="tg-yw4l" id="PARVOLECART"><center></center></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"><center><b>Clôture</b></center></td>
+    <td class="tg-yw4l" colspan="2" id="CLONBCDR"><center></center></td>
+    <td class="tg-yw4l" colspan="2" id="CLONBORBIT"><center></center></td>
+    <td class="tg-yw4l" colspan="2" id="CLONBECART"><center></center></td>
+  </tr>
+</table>
+<br>
+<legend>Liste des impayés Pénalités de retard</legend>
+    <center><table id="jqGrid" border="1"></table></center>
+    <div id="jqGridPager" style="position:relative;"></div>
+	<script type="text/javascript"> 
+$(document).ready(function () {
+	
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_conforme_ORBIT_PAR_P_Detail",
+		datatype: "json",
+		
+		 colModel: [
+			{ label: 'RIM', name: 'RIM',sorttype:"integer",align:"center"},
+			{ label: 'N° LI', name: 'LI',sorttype:"integer",align:"center"},
+			{ label: 'Encours', name: 'Encours',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'K + I', name: 'K_I',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3} },
+			{ label: 'P', name: 'P',align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3} },
+          
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 400,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: true,
+		
+                loadComplete: function () {
+                    var $self = $(this),
+                    sum1 = $self.jqGrid("getCol", "Encours", false, "sum");
+					sum1=parseFloat(sum1);
+                    $self.jqGrid("footerData", "set", {RIM: "Total en TND:"});
+					$self.jqGrid("footerData", "set", {Encours: sum1});
+                }
+
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true ,refresh:false},
+                        {},{},{},{multipleSearch:true}),
+						
+{
+        addCaption:'search',
+        top:300,    
+        left:700    
+    };
+		 setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+	   
+        });
+
+
+
+ </script>
+</div>
+</div>
+
+</body>
+</html>

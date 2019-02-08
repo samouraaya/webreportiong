@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script type="text/javascript" src="../../js/fn_prov.js"></script>
+
+<style>
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+	.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:16px;
+}
+</style>
+</head>
+<body bgcolor="#DCDCDC">
+		
+		<div class="col-md-12">
+		<div class="col-md-9"><legend>ETAT DES PROVISIONS A PASSER</legend>
+		</div>
+		</div>
+		<div class="col-md-12">
+						<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onClick ="$('#table').tableExport({type:'excel',escape:'false',tableName:'Provision'});" width='24px'> Excel</a>
+						</li>	
+						
+						</div>	
+		<table class="table table-bordered" id="table">
+		<tr>
+		<td width="10%"></td>
+		<td width="15%"></td>
+		<td bgcolor="#B0CC99" width="20%"><center>PORTEFEUILLE</center></td>
+		<td  bgcolor="#B0CC99" width="15%"><center>Total provisions</center></td>
+		</tr>
+<tr>
+	<td  align="center" valign="MIDDLE" bgcolor="#F6E497"><b>Total</b></td>
+	<td><center></center></td>
+	<td><center></center></td>
+ </tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>SAIN (0.5 %)</td>
+	<td id="saintotal" class="center"></td>
+	<td id="saintotalprov" class="center"></td>
+ </tr>
+ 
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 1 et 30 jours (10 %)</td>
+	<td id="par130total" class="center"><center></center></td>
+	<td id="par130totalprov" class="center"><center></center></td>
+</tr>
+	
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 31 et 60 jours (40 %)</td>
+	<td id="par60total" class="center"><center></center></td>
+	<td id="par60totalprov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 61 et 90 jours (70 %)</td>
+	<td id="par90total" class="center"><center></center></td>
+	<td id="par90totalprov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 91 et 180 jours (100 %)</td>
+	<td id="par180total" class="center"><center></center></td>
+	<td id="par180totalprov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> >180 jours </td>
+	<td id="par181total" class="center"><center></center></td>
+	<td id="par181totalprov" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Sain	(20%)</td>
+	<td id="restsainm" class="center"><center></center></td>
+	<td id="restsainprovm" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Entre 1 et 30 jours (50%)</td>
+	<td id="restpar1m" class="center"><center></center></td>
+	<td id="restpar1provm" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré >= 31 jours (100%)</td>
+	<td id="restpar30m" class="center"><center></center></td>
+	<td id="restpar30provm" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td bgcolor="#B0CC99">PORTEFEUILLE TOTAL</td>
+	<td id="totaltotaux" class="center"><center></center></td>
+	<td id="totaltotauxprov" class="center"><center</center></td>
+</tr>
+
+<tr>
+	<td  align="center" valign="MIDDLE" bgcolor="#F6E497"><b>501</b></td>
+	<td>SAIN (0.5 %)</td>
+	<td  id="saintotal501" class="center"><center></center></td>
+	<td id="saintotal501prov" class="center"><center></center></td>
+ </tr>
+ 
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 1 et 30 jours (10 %)</td>
+	<td id="par130total501" class="center"><center></center></td>
+	<td id="par130total501prov" class="center"><center></center></td>
+</tr>
+	
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 31 et 60 jours (40 %)</td>
+	<td id="par60total501" class="center"><center></center></td>
+	<td id="par60total501prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 61 et 90 jours (70 %)</td>
+	<td id="par90total501" class="center"><center></center></td>
+	<td id="par90total501prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 91 et 180 jours (100 %)</td>
+	<td id="par180total501" class="center"><center></center></td>
+	<td id="par180total501prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> >180 jours </td>
+	<td id="par181total501" class="center"><center></center></td>
+	<td id="par181total501prov" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Sain	(20%)</td>
+	<td id="restsainm501" class="center"><center></center></td>
+	<td id="restsainprovm501" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Entre 1 et 30 jours (50%)</td>
+	<td id="restpar1m501" class="center"><center></center></td>
+	<td id="restpar1provm501" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré >= 31 jours (100%)</td>
+	<td id="restpar30m501" class="center"><center></center></td>
+	<td id="restpar30provm501" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td bgcolor="#B0CC99">PORTEFEUILLE TOTAL</td>
+	<td id="totaltotaux501" class="center"><center></center></td>
+	<td id="totaltotauxprov501" class="center"><center</center></td>
+</tr>
+
+<tr>
+	<td align="center" valign="MIDDLE" bgcolor="#F6E497"><b>511</b></td>
+	<td>SAIN (0.5 %)</td>
+	<td  id="saintotal511" class="center"><center></center></td>
+	<td id="saintotal511prov" class="center"><center></center></td>
+ </tr>
+ 
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 1 et 30 jours (10 %)</td>
+	<td id="par130total511" class="center"><center></center></td>
+	<td id="par130total511prov" class="center"><center></center></td>
+</tr>
+	
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 31 et 60 jours (40 %)</td>
+	<td id="par60total511" class="center"><center></center></td>
+	<td id="par60total511prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 61 et 90 jours (70 %)</td>
+	<td id="par90total511" class="center"><center></center></td>
+	<td id="par90total511prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 91 et 180 jours (100 %)</td>
+	<td id="par180total511" class="center"><center></center></td>
+	<td id="par180total511prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> >180 jours </td>
+	<td id="par181total511" class="center"><center></center></td>
+	<td id="par181total511prov" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Sain	(20%)</td>
+	<td id="restsainm511" class="center"><center></center></td>
+	<td id="restsainprovm511" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Entre 1 et 30 jours (50%)</td>
+	<td id="restpar1m511" class="center"><center></center></td>
+	<td id="restpar1provm511" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré >= 31 jours (100%)</td>
+	<td id="restpar30m511" class="center"><center></center></td>
+	<td id="restpar30provm511" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td bgcolor="#B0CC99">PORTEFEUILLE TOTAL</td>
+	<td id="totaltotaux511" class="center"><center></center></td>
+	<td id="totaltotauxprov511" class="center"><center</center></td>
+</tr>
+
+<tr>
+	<td  align="center" valign="MIDDLE" bgcolor="#F6E497"><b>521</b></td>
+	<td>SAIN (0.5 %)</td>
+	<td  id="saintotal521" class="center"><center></center></td>
+	<td id="saintotal521prov" class="center"><center></center></td>
+ </tr>
+ 
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 1 et 30 jours (10 %)</td>
+	<td id="par130total521" class="center"><center></center></td>
+	<td id="par130total521prov" class="center"><center></center></td>
+</tr>
+	
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 31 et 60 jours (40 %)</td>
+	<td id="par60total521" class="center"><center></center></td>
+	<td id="par60total521prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 61 et 90 jours (70 %)</td>
+	<td id="par90total521" class="center"><center></center></td>
+	<td id="par90total521prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td>Entre 91 et 180 jours (100 %)</td>
+	<td id="par180total521" class="center"><center></center></td>
+	<td id="par180total521prov" class="center"><center></center></td>
+</tr>
+
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> >180 jours </td>
+	<td id="par181total521" class="center"><center></center></td>
+	<td id="par181total521prov" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Sain	(20%)</td>
+	<td id="restsainm521" class="center"><center></center></td>
+	<td id="restsainprovm521" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré - Entre 1 et 30 jours (50%)</td>
+	<td id="restpar1m521" class="center"><center></center></td>
+	<td id="restpar1provm521" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td> Restructuré >= 31 jours (100%)</td>
+	<td id="restpar30m521" class="center"><center></center></td>
+	<td id="restpar30provm521" class="center"><center></center></td>
+</tr>
+<tr>
+	<td bgcolor="#F6E497"></td>
+	<td bgcolor="#B0CC99">PORTEFEUILLE TOTAL</td>
+	<td id="totaltotaux521" class="center"><center></center></td>
+	<td id="totaltotauxprov521" class="center"><center</center></td>
+</tr>
+</table> 
+
+</div>
+</div>
+</div>		
+<script type="text/javascript" src="../../js/fn_totaux_prov.js"></script>
+</body>
+</html>

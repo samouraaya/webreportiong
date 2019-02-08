@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Webreporting ™- Advans Tunisie</title>
+	<script src="../../js/jquery-1.10.2.js"></script>
+	<script src="../../js/actioncc.js"></script>
+	<script src="../../js/jquery-ui.js"></script>
+	<script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript"  src="../../js/tableExport1.js"></script>
+	<script type="text/javascript"  src="../../js/jquery.base64.js"></script>
+	<script type="text/javascript" src="../../js/exportexcel.js"></script>
+	<script type="text/javascript" src="../../js/imprime.js"></script>
+	
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/tableau.css">
+    <script type="text/ecmascript" src="../../js/jquery.jqGrid.min.js"></script>
+    <script type="text/ecmascript" src="../../js/i18n/grid.locale-en.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/jquery.printelement.js" type="text/javascript"></script>
+	<script src="../../js/dropdown.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../js/bootstrap-notify.js"></script>
+	<script type="text/javascript" src="../../js/xlsx.core.min.js"></script>
+	<script type="text/javascript" src="../../js/Blob.js"></script>
+	<script type="text/javascript" src="../../js/FileSaver.js"></script>
+	<script type="text/javascript" src="../../js/Export2Excel.js"></script>
+	<script>if(sessionStorage.length == 0) {window.location.replace("../../cnx/deconnexion.php")};</script>
+	<script> var classcode = sessionStorage.getItem("classcode"); 
+			if ((classcode=="310"))
+			{}
+			else {window.location.replace("../../cnx/deconnexion.php");}</script>
+	         <script>
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button"; 
+            window.onhashchange = function () {
+                window.location.hash = "no-back-button";
+            }
+        </script> 
+	<!--	 <script type="text/javascript">
+    
+        document.oncontextmenu = new Function("return false");
+    
+			</script>//-->
+		<link rel="icon" type="image/gif" href="imageedit.gif" />
+</head>
+
+
+<header>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img src="../../img/advtn.gif"  width="120px" height="40px"/>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+	  <li  ><a href="#" id="000TN" data-toggle="pill"><span class="glyphicon glyphicon-home" ></span></a></li>
+	  <li><a href="#" id="reporting_crm_hebdo" data-toggle="pill"><span class="glyphicon glyphicon-move" ></span> Reporting CRM</a></li>
+	  <li><a href="#" id="demande" data-toggle="pill"><span class="glyphicon glyphicon-list"></span> Mes demandes</span></a></li>
+	  
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"><span class="glyphicon glyphicon-list-alt"></span> Mes échéances <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li ><a href="#" id="echj" data-toggle="pill">Liste des échéances du jour</a></li>
+            <li ><a href="#" id="echattendu" data-toggle="pill">Liste des échéances futures</a></li>
+					<li class="divider"></li>
+			<li><a href="#" id="repectechm" data-toggle="pill"> Respect des échéances du mois en cours</a></li>
+			<li><a href="#" id="repectechmder" data-toggle="pill"> Respect des échéances du mois dernier</a></li>
+          </ul>
+        </li>
+			<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"> <span class="glyphicon glyphicon-flag"></span> Mes Impayés <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		<li><a href="#" id="impsimple" data-toggle="pill"> Impayés simplifié</a></li>
+		<li ><a href="#" id="impdet" data-toggle="pill">Impayés détaillé</a></li>
+		<li><a href="#" id="engage" data-toggle="pill"> Liste des engagement</a></li>
+		</ul>
+		</li>
+		 <li class="dropdown " >
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"><span class="glyphicon glyphicon-list-alt"></span> Mes décaissements <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li ><a href="#" id="decaism" data-toggle="pill">Décaissement du mois en cours</a></li>
+            <li><a href="#" id="decaismder" data-toggle="pill">Décaissement du mois dernier</a></li>
+          </ul>
+        </li>
+		     <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"><span class="glyphicon glyphicon-book"></span> Mon portefeuille <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" id="portfeuille" data-toggle="pill">Etat portefeuille Crédit</a></li>
+            <li ><a href="#" id="coorclt" data-toggle="pill">Coordonnées clients</a></li>
+			<li><a href="#" id="liste_maturite_40" data-toggle="pill">Crédit à maturité</a></li>
+			<li><a href="#" id="lst_endet_croise" data-toggle="pill">Endettements croisés</a></li>
+			<li><a href="#" id="lst_r_abondan" data-toggle="pill">liste des clients sortants</a></li>
+			<li><a href="#" id="lst_r_clients_credit_complem" data-toggle="pill">Clients éligibles à un crédit complémentaire</a></li>
+          </ul>
+        </li>
+		<li><a href="#" id="visitcrm" data-toggle="pill"><span class="glyphicon glyphicon-screenshot" ></span> Mes visites de suivi</a></li>
+	<li><a href="#" id="objectif" data-toggle="pill"><span class="glyphicon glyphicon-usd" ></span> Mes Objectifs </a></li> 
+      </ul>
+	  
+	  <ul class="nav navbar-nav navbar-right">
+	     
+	  <li><a href="#" id="passwd" data-toggle="pill"><span class="glyphicon glyphicon-lock" ></span></a></li>
+	  <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+		 <script> var nom = sessionStorage.getItem("nom"); document.write(nom); </script> <span class="glyphicon glyphicon-user" ></span> <span class="caret"></span>
+		  </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../../cnx/deconnexion.php">Déconnexion <span class="glyphicon glyphicon-off" ></span></a></li>
+          
+          
+          </ul>
+        </li>
+	   </ul>
+    </div>
+  </div>
+</nav>
+        </header>
+<body>
+  <div class="col-md-12" id="container" style="padding-top:2px;" >
+
+        </div>
+</body>
+</html>

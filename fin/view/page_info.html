@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+	<script type="text/javascript" src="../../js/fonctionsdg.js"></script>
+	<script>
+	 $.ajax({
+
+            type: "GET",
+            url: "../controller/api/show_notification",
+            dataType: "json",
+            success: function (data) {
+			var i=data.length;
+			var compteur=0;
+				while (compteur<i) 
+				{	
+					$.notify({
+					title: 'Envoyé Par :<strong>'+data[compteur].sender+'<br></strong><br>',
+					message: data[compteur].body+'<br>Envoyé le :'+data[compteur].dateinsert
+					},{
+					type: 'success',
+					newest_on_top: true,
+					delay: 1555000,
+					offset: {
+						x: 20,
+						y: 100
+					}
+					});
+				compteur++;
+				}
+            },
+            error: function (result) {
+                alert("Error");
+            }
+        });
+		
+
+	</script>
+
+<head>
+<body bgcolor="#DCDCDC">
+<div class="col-md-12">	
+	<div class="col-md-8">
+		<legend><h2>Tableau de bord</h2></legend>
+	</div>
+		<div class="col-md-4">
+		<div class="well ">
+		<legend  style="color:#006B2C"><b><span class="glyphicon glyphicon-dashboard" ></span> Heure du dernier Batch validé:</legend><br>
+		<input type="text" class="form-control" readonly id="heure_batch">
+		</div>
+		</div>
+</div>
+		<div class="row1">
+		
+		<div class="col-md-12">
+		<div class="col-md-2">	
+		<div class="well ">
+		<legend  style="color:#006B2C"><font size="3"><b>Demande en cours</b></font></legend>
+		<label  style="color: #59A92E;">Statut « pending » :</label>
+		<input type="text" class="form-control" readonly id="nb_pending">
+		<br>
+		<label  style="color: #59A92E;">Statut « pending » > 10J :</label>
+		<input type="text" class="form-control" readonly id="nb_pending_10" >
+		</div>
+		</div>
+		<div class="col-md-2">
+		<div class="well ">
+		<legend  style="color:#006B2C"><font size="2"><b>Decaissements du mois</b></font></legend>
+		<label  style="color: #59A92E;">Nombre de clients  :</label>
+		<input type="text" class="form-control" readonly id="decaissement_clt">
+		<br>
+		<label  style="color: #59A92E;">Volume :</label>
+		<input type="text" class="form-control" readonly id="decaissement_vl">
+		<br>
+		<label  style="color: #59A92E;">Moyenne :</label>
+		<input type="text" class="form-control" readonly id="vl_moyenne_dec">
+		</div>
+		</div>
+			
+			
+		<div class="col-md-2">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>Clients actifs </b></legend>
+		<label  style="color: #59A92E;">Nombre de clients :</label>
+		<input type="text" class="form-control" readonly id="nb_clt">			
+		<br>
+		<label  style="color: #59A92E;">Volume :</label>
+		<input type="text" class="form-control" readonly id="vl_clt">
+		</div>				
+		</div>
+
+		<div class="col-md-2">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>Impayés </b></legend>
+		<label  style="color: #59A92E;">Nombre de PAR:</label><br><br><br>
+		<label  style="color: #59A92E;">Volume de PAR :</label><br><br><br>
+		<label  style="color: #59A92E;">Pourcentage PAR:</label><br><br>
+		<label  style="color: #59A92E;"><i>NB impayés de pénalités:</i></label><br>
+		</div>
+		</div>
+		<div class="col-md-2">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>PAR 0</b></legend>
+		<input type="text" class="form-control" readonly id="par0">
+		<br>
+		<input type="text" class="form-control" readonly id="volpar0"><br>
+		<input type="text" class="form-control" readonly id="per_par0"><br>
+		<input type="text" class="form-control" readonly id="impaye_penal">
+		</div>
+		</div>
+		<div class="col-md-2">
+		<div class="well">
+		<legend  style="color:#006B2C"><b>PAR 30</b> </legend>	
+		<input type="text" class="form-control" readonly id="par30">
+		<br>
+		<input type="text" class="form-control" readonly id="vlpar30"><br>
+		<input type="text" class="form-control" readonly id="per_par30"><br><br><br>
+		</div>
+		</div>
+		</div>	
+		</div>
+
+<br><br>
+<div class="col-md-12">
+<center>
+<table id="jqGrid" ></table>
+    <div id="jqGridPager" style="position:relative;"></div>
+<script type="text/javascript"> 
+
+$(document).ready(function () {
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/res_cc",
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:100,align:"center", name:'rsm',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'Agence',width:100,align:"center", name:'agence',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/branch.php'}},
+			{ label: 'Demande Pending',width:60,align:"center", name: 'nombre',sorttype: 'integer'},
+			{ label: 'NB Décaissement M',width:60,align:"center", name: 'nb',sorttype: 'integer'},
+			{ label: 'Vol Décaissement M',width:60,align:"center", name: 'decaisse',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:" ", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'NB Encours',width:50,align:"center", name: 'nbclt'},
+			{ label: 'Vol Encours',width:50,align:"center", name: 'volclt',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:" ", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'PAR 0',width:50,align:"center", name: 'per0',sorttype: 'number'},
+			{ label: 'PAR 30',width:50,align:"center", name: 'per30',sorttype: 'number'},
+			{ label: 'Nbr PAR 7',width:50,align:"center", name: 'PAR7',sorttype: 'number'},
+			{ label: 'Nbr Pending>15J',width:50,align:"center", name: 'Pending15',sorttype: 'number'},
+			{ label: 'Délai tr',width:50,align:"center", name: 'Dureetrait'},
+						
+		],
+		pgbuttons: false,     // disable page control like next, back button
+		pgtext: false, 
+		viewrecords: false, 
+		autowidth:true,
+		height: 500,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: true,
+			
+                loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "nombre", false, "sum");
+						count1 = $self.jqGrid("getCol", "nombre", false, "count");
+						sum2 = $self.jqGrid("getCol", "nb", false, "sum");
+						sum3 = $self.jqGrid("getCol", "decaisse", false, "sum");
+						encours = $self.jqGrid("getCol", "volclt", false, "sum");
+						nbclt = $self.jqGrid("getCol", "nbclt", false, "sum");
+						moy = $self.jqGrid("getCol", "Dureetrait", false, "sum");
+						moy=moy/count1;
+						moy=moy.toFixed(0);
+						res=sum1/count1;
+						res=res.toFixed(1);
+						
+						res1=sum2/count1;
+						res1=res1.toFixed(1);
+						
+						res2=sum3/count1;
+						res2=parseInt(res2);
+						
+						res3=encours/nbclt;
+						res3=res3.toFixed(1);
+						
+                    $self.jqGrid("footerData", "set", {rsm: "Moyenne:", nombre: res});
+					$self.jqGrid("footerData", "set", {nb: res1});
+					$self.jqGrid("footerData", "set", {decaisse: res2});
+					$self.jqGrid("footerData", "set", {nbclt: "-"});
+					$self.jqGrid("footerData", "set", {volclt: res3});
+					$self.jqGrid("footerData", "set", {per0: "-"});
+					$self.jqGrid("footerData", "set", {per30: "-"});
+					$self.jqGrid("footerData", "set", {Dureetrait: moy});
+				
+					
+                }
+				
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+        });
+
+
+
+ </script>
+ </div>
+</body>
+</html>

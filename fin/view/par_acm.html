@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../../js/par_acm.js" async ></script>
+
+
+<style type="text/css">
+
+.center { 
+margin:0; 
+padding:0; 
+text-align:center; 
+font-size:11px;
+}
+	.ex:hover
+			{
+				cursor: pointer;
+			}
+  </style>
+        <title>Reporting Maturité Portefeuille</title>
+</head>
+
+
+
+<body>
+
+		<div class="row1">
+<legend> <span class="glyphicon glyphicon-bitcoin" ></span> PAR ACM</legend>
+<div class="row1">
+<div class="ex">	
+						<li>						
+								<img src='../../img/excel.jpg' onClick ="$('#table').tableExport({type:'excel',escape:'false',tableName:'PAR_ACM'});" width='24px'> Excel</a>
+						</li>	
+						
+						</div>	
+<table id="table" class="table table-striped" >
+<thead>
+<th width="200px"></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>Nombre des crédits</center></th>
+<th width="100px" class="center" bgcolor="#98DB9C"><center>Encours</center></th>
+
+</thead>
+<tbody>
+
+<tr>
+
+<td  bgcolor="#98DB9C" class="center" >Classe 0 : Créances saines</td>
+
+<td id="nbSain" class="center"><center></center></td>
+<td id="vlSain" class="center"><center></center></td>
+
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Classe 1 : Impayés 1 à 30 jours</td>
+
+<td id="nbPAR0" class="center"><center></center></td>
+<td id="vlPAR0" class="center"><center></center></td>
+
+</tr>
+<tr>
+
+<td  bgcolor="#98DB9C" class="center">Classe 2 : Impayés 31 à 60 jours</td>
+<td id="nbPAR30" class="center"><center></center></td>
+<td id="vlPAR30" class="center"><center></center></td>
+
+</tr>
+
+<tr>
+<td  bgcolor="#98DB9C" class="center">Classe 3 : Impayés 61 à 90 jours</td>
+<td id="nbPAR60" class="center"><center></center></td>
+<td id="vlPAR60" class="center"><center></center></td>
+
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Classe 4 : Impayés 91 à 120 jours</td>
+<td id="nbPAR90" class="center"><center></center></td>
+<td id="vlPAR90" class="center"><center></center></td>
+
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Classe 5 : Impayés au-delà de 120 jours</td>
+<td id="nbPAR120" class="center"><center></center></td>
+<td id="vlPAR120" class="center"><center></center></td>
+
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center"><b>Sous - total</b></td>
+<td id="nbSoustotal" class="center"><center></center></td>
+<td id="vlSoustotal" class="center"><center></center></td>
+
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Crédits consolidés</td>
+<td id="" class="center"><center></center></td>
+<td id="" class="center"><center></center></td>
+
+</tr>
+<tr>
+<td  bgcolor="#98DB9C" class="center">Crédits rééchelonnés</td>
+<td id="nbrefinanced" class="center"><center></center></td>
+<td id="vlrefinanced" class="center"><center></center></td>
+
+</tr>
+
+<tr>
+<td  bgcolor="#98DB9C" class="center">Crédits réaménagés</td>
+<td id="" class="center"><center></center></td>
+<td id="" class="center"><center></center></td>
+
+</tr>
+
+<tr>
+<td  bgcolor="#98DB9C" class="center"><b>TOTAL</b></td>
+<td id="nbTOTAL" class="center"><center></center></td>
+<td id="vlTOTAL" class="center"><center></center></td>
+
+</tr>
+
+<tr>
+<td  bgcolor="#98DB9C" class="center">RADIATIONS DE CRÉANCES</td>
+<td id="nbTotalperte" class="center"><center></center></td>
+<td id="vlTotalperte" class="center"><center></center></td>
+</tr>
+
+<tr>
+<td  bgcolor="#98DB9C" class="center">RADIATIONS DE CRÉANCES CE MOIS</td>
+<td id="nbTotalpertemonth" class="center"><center></center></td>
+<td id="vlTotalpertemonth" class="center"><center></center></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+</body>
+</html>

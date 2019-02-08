@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<meta charset="utf-8" /> 
+<html lang="en">
+<head>
+
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title class="defileParent">Webreporting ™- Advans Tunisie</title>
+	<link rel="icon" type="image/gif" href="../../imageedit.gif" />
+	<!--style--> 
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap-submenu.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/jquery_notification.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/tableau.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/daterangepicker.css">
+	
+	<!--JS File-->
+	<script type="text/javascript"  src="../../js/jquery-1.10.2.js"></script>
+	<script type="text/javascript"  src="../../js/jquery-ui.js"></script>
+	<script type="text/javascript"  src="../../js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="../../js/jquery_notification_v.1.js"></script>
+	<script type="text/javascript" src="../../js/accounting.js"></script>
+	<script type="text/javascript"  src="../../js/tableExport1.js"></script>
+	<script type="text/javascript"  src="../../js/jquery.base64.js"></script>
+	<script type="text/javascript" src="../../js/exportexcel.js"></script>
+	<script type="text/javascript"  src="../../js/imprime.js"></script>
+	<script type="text/javascript"  src="../../js/canvasjs.min.js"></script>
+	<script type="text/ecmascript"  src="../../js/jquery.jqGrid.min.js"></script>
+    <script type="text/ecmascript"  src="../../js/i18n/grid.locale-en.js"></script>
+	<script type="text/javascript"  src="../../js/bootstrap.min.js"></script>
+	<script type="text/javascript"  src="../../js/bootstrap-submenu.js"></script>
+	<script type="text/javascript"  src="../../js/jquery.printelement.js" type="text/javascript"></script>
+	<script type="text/javascript"  src="../../js/actioncr.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-notify.js"></script>
+	<script type="text/javascript"  src="../../js/moment.js"></script>
+	<script src="../../module_graphs/js/highcharts.js"></script>
+	<script src="../../module_graphs/js/exporting.js"></script>
+	<script type="text/javascript" src="../../js/xlsx.core.min.js"></script>
+	<script type="text/javascript" src="../../js/Blob.js"></script>
+	<script type="text/javascript" src="../../js/FileSaver.js"></script>
+	<script type="text/javascript" src="../../js/Export2Excel.js"></script>
+	<script type="text/javascript" src="../../js/daterangepicker.js"></script>
+	
+	<script>if(sessionStorage.length == 0) {window.location.replace("../../cnx/deconnexion.php")};</script>
+	<script> var classcode = sessionStorage.getItem("classcode"); 
+			if ((classcode=="530"))
+			{}
+			else {window.location.replace("../../cnx/deconnexion.php");}</script>
+	        	<script>
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button"; 
+            window.onhashchange = function () {
+                window.location.hash = "no-back-button";
+            }
+			
+	$(function() {
+  $(".nav li").on("click", function() {
+    $(".nav li").removeClass("active");
+    $(this).addClass("active");
+  });
+  
+});
+        </script>
+		
+	<style>
+
+.zoom
+{
+    zoom: 80%;
+}
+
+</style>
+<style>
+.defileParent {
+	display: block;
+	margin: 3em auto;
+	overflow: hidden;
+	position: relative;
+	table-layout: fixed;
+	width: 700px;
+}
+</style>		
+	<script>
+		    $(function(){
+    $(".dropdown-submenu").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            });
+    });
+		</script>
+	<!--	 <script type="text/javascript">
+    
+        document.oncontextmenu = new Function("return false");
+    
+			</script>//-->
+		<link rel="icon" type="image/gif" href="imageedit.gif" />
+</head>
+
+
+<header>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+     <div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+            </button>
+      <img src="../../img/advtn.gif"  width="120px" height="40px"/>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	 <ul class="nav navbar-nav">
+		<li><a href="#" id="info_page" data-toggle="pill"><span class="glyphicon glyphicon-home" ></span></a></li>
+		<li class="dropdown">
+						 <a href="#" class="dropdown-toggle" id="reporting" data-toggle="dropdown"  role="button" aria-expanded="false" ><span class="glyphicon glyphicon-list-alt" ></span> Reporting opérationnel</a>
+						
+						   </li>
+      <ul class="nav navbar-nav">
+	   <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" ><span class="glyphicon glyphicon-list-alt"></span> Echéances <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li ><a href="#" id="echj" >Liste des échéances du jour</a></li>
+            <li ><a href="#" id="echattendu" >Liste des échéances futures</a></li>
+					<li class="divider"></li>
+			<li><a href="#" id="resechencrous" > Respect des échéances du mois en cours</a></li>
+			<li><a href="#" id="resecheder" > Respect des échéances du mois dernier</a></li>
+          </ul>
+        </li>
+			<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"> <span class="glyphicon glyphicon-flag"></span> Impayés <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		<li><a href="#" id="impsimple" data-toggle="pill"> Impayés simplifié</a></li>
+		<li ><a href="#" id="impdet" data-toggle="pill">Impayés détaillé</a></li>
+		<li><a href="#" id="engage" data-toggle="pill"> Liste des engagement</a></li>
+		</ul>
+		</li>
+		 <li class="dropdown " >
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"><span class="glyphicon glyphicon-list-alt"></span> Décaissements <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li ><a href="#" id="decaism" data-toggle="pill">Décaissements du mois en cours</a></li>
+            <li><a href="#" id="decaismder" data-toggle="pill">Décaissements du mois dernier</a></li>
+          </ul>
+        </li>
+		     <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"><span class="glyphicon glyphicon-book"></span> Portefeuille <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" id="portfeuille" data-toggle="pill">Etat portefeuille Crédit</a></li>
+            <li ><a href="#" id="coorclt" data-toggle="pill">Coordonnées clients</a></li>
+          </ul>
+        </li>
+		<li><a href="#" id="visitcrm" data-toggle="pill"><span class="glyphicon glyphicon-screenshot" ></span> Visites de suivi</a></li>
+	
+		<li class="dropdown">
+		
+		
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-toggle="pill"><span class="glyphicon glyphicon-book"></span> Reporting recouvrement <span class="caret"></span></a>  
+		  <ul class="dropdown-menu" role="menu">
+            <li><a href="#" id="synth" >Synthèse</a></li>
+			<li class="dropdown-submenu">
+						 <a href="#" class="dropdown-toggle" data-toggle="dropdown"  role="button" aria-expanded="false" > Clôtures</a>
+						<ul class="dropdown-menu">
+						<li><a href="#" id="clot"  ><span class="glyphicon glyphicon-bitcoin" ></span> Clotûres du mois</a></li>
+						<li><a href="#" id="clotprec" ><span class="glyphicon glyphicon-ruble" ></span> Clotûres du mois précédent</a></li>
+						
+						</ul>
+						   </li>
+			<li class="dropdown-submenu">
+						 <a href="#" class="dropdown-toggle" data-toggle="dropdown"  role="button" aria-expanded="false" > Flux de Remboursements</a>
+						<ul class="dropdown-menu">
+						<li><a href="#" id="flxremb"  ><span class="glyphicon glyphicon-bitcoin" ></span> Flux du moi en cours</a></li>
+						<li><a href="#" id="flxrembprec" ><span class="glyphicon glyphicon-ruble" ></span> Flux du mois précédent</a></li>
+						
+						</ul>
+						   </li>
+			<li><a href="#" id="actn">Actions</a></li>
+			<li><a href="#" id="strategie">Stratégies</a></li>
+          </ul>
+		</li>
+      </ul>
+	  
+	  <ul class="nav navbar-nav navbar-right" >  
+	  <li><a href="#" id="passwd" data-toggle="pill"><span class="glyphicon glyphicon-lock" ></span></a></li>
+	  <li class="dropdown" style ="align:right">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+		 <script> var nom = sessionStorage.getItem("nom"); document.write(nom); </script> <span class="glyphicon glyphicon-user" ></span> <span class="caret"></span>
+		  </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../../cnx/deconnexion.php">Déconnexion <span class="glyphicon glyphicon-off" ></span></a></li>
+          </ul>
+        </li>
+	   </ul>
+	  
+		
+    </div>
+  </div>
+</nav>
+</header>
+<body>
+  <div class="col-md-12" id="container" style="padding-top:2px;" >
+
+        </div>
+</body>
+</html>

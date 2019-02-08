@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_Liste_crédit_restructuré';</script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+<div id="row1">
+<center><legend>Liste crédit restructuré </legend></center>
+    <center><table id="jqGrid" ></table></center>	</div>
+    <div id="jqGridPager" style="position:relative;"></div>
+	
+<script type="text/javascript"> 	
+$(document).ready(function () {
+	
+	
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_cr_ref",
+		datatype: "json",
+		 colModel: [
+			{ label: 'Rim no',width: 50,align:"center", name: 'RIM',sorttype: "string" },
+			{ label: 'LI REFINANCED',width: 50,align:"center", name: 'LIREFINANCED',sorttype: "integer" },
+			{ label: 'LI CLOSED',width: 50, name: 'LICLOSED',align:"center"},
+			{ label: 'Encours', name: 'Encours',width: 50,align:"center",sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:",", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'NB J Retard', name: 'JRetardEnRestructure',width: 50,align:"center",sorttype: 'string'},
+			{ label: 'Date Decaissement', name: 'DateDecaissement',align:"center",width: 50,sorttype: "date",searchoptions: {
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+                            }
+                        }
+                        , formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+	
+			
+		],
+		pgbuttons: false,    
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 10000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: true,
+	
+
+                loadComplete: function () {
+                    var $self = $(this),
+                          sum1 = $self.jqGrid("getCol", "Montantdemand", false, "sum");
+						 sum2 = $self.jqGrid("getCol", "MontantdemandBIRD", false, "sum");
+						
+						
+						sum1=parseInt(sum1);
+						sum2=parseInt(sum2);
+						
+                    $self.jqGrid("footerData", "set", {Agence: "Total en TND:", Montantdemand: sum1, MontantdemandBIRD: sum2});
+					
+					
+                }
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+	
+	
+						
+		setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+		
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Décaissements du mois résultant d'une clôture anticipée </p><br></div></div>
+
+</body>
+</html>

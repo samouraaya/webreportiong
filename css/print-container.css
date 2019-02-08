@@ -1,0 +1,25 @@
+#prt-container table {
+    border-collapse:collapse;
+}
+#prt-container th,
+#prt-container td {
+    border:1px solid black;
+	font-family:verdana;
+font-size:14px;
+}
+
+p {
+    
+	font-family:verdana;
+font-size:29px;
+font-weight : bolder;
+text-align: center;
+}
+
+ @page { 
+        size: landscape;
+    }
+	
+@print { 
+        size: landscape;
+    }

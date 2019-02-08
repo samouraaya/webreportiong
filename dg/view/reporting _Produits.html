@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en">
+ <script src="../../js/custom.js"></script>
+<script type="text/javascript" src="../../js/reporting_table_produits.js" async></script>
+<link href="../../css/custom.css" rel="stylesheet">
+<link href="../../css/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+<script>
+var id_Produit = localStorage.getItem('id');
+</script>
+
+<body  bgcolor="#DCDCDC">
+
+<div class="col-md-12">	
+  <div class="clearfix"></div>
+  
+
+
+                <div class="x_panel">
+                 
+				    <div class="x_title">
+                    <h2>Reporting <small> credit </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+							<th>Agence</th>
+							<th class="column-title">VL Encours </th>
+							<th class="column-title">Nb crédits actifs</th>
+							<th class="column-title">Nb Dec aujourd'hui</th>
+							<th class="column-title">VL Dec aujourd'hui</th>
+							<th class="column-title">% échéances payées à temps</th>
+							<th class="column-title">incl. Échéances attendues</th>
+							<th class="column-title">Incl. Échéances impayées</th>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id='credit'>
+                        
+						<tr id="loadingcredit"><td colspan="8"><center><img src="../../img/loading_report.gif" class="displayed"  alt="arobas" style="width:100px; height:100px;" /></center></td></tr>		
+                          
+                        </tbody>
+						<tfoot id="footer_credit">
+						
+						</tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+				
+			<!-- PAR -->	
+			<div class="x_panel">
+                  <div class="x_title">
+                    <h2>Reporting <small>Qualité du portefeuille </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+							<th>Agence</th>
+							<th class="column-title">NB PAR0 </th>
+							<th class="column-title">vl PAR0</th>
+							<th class="column-title">% PAR0</th>
+							<th class="column-title">NB PAR10 </th>
+							<th class="column-title">vl PAR10</th>
+							<th class="column-title">% PAR10</th>
+							<th class="column-title">NB PAR30 </th>
+							<th class="column-title">vl PAR30</th>
+							<th class="column-title">% PAR30</th>
+							<th class="column-title">NB PAR90 </th>
+							<th class="column-title">vl PAR90</th>
+							<th class="column-title">% PAR90</th>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id='par'>
+                         
+                        <tr id="loadingpar"><td colspan="13"><center><img src="../../img/loading_report.gif"  alt="arobas" style="width:100px; height:100px;" /></center></td><tr>  
+                        </tbody>
+						<tfoot id="footer_par">
+						
+						</tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+				
+				
+			<!-- Demande -->	
+			<div class="x_panel">
+                  <div class="x_title">
+                    <h2>Reporting <small>Demande </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+							<th>Agence</th>
+							<th class="column-title">Nb nouvelles demandes</th>
+							<th class="column-title">VL nouvelles demandes</th>
+							<th class="column-title">Nb demandes closed</th>
+							<th class="column-title">Stock de demandes (nombre)</th>
+							<th class="column-title">incl. Pending</th>
+							<th class="column-title">incl. Reviewed</th>
+							<th class="column-title">incl. Approved</th>
+							<th class="column-title">Stock de demandes (volume)</th>
+							<th class="column-title">incl. Pending</th>
+							<th class="column-title">incl. Reviewed</th>
+							<th class="column-title">incl. Approved</th>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id='dem'>
+                         
+                        <tr id="loadingdem"><td colspan="12"><center><img src="../../img/loading_report.gif"  alt="arobas" style="width:100px; height:100px;" /></center></td><tr>  
+                        </tbody>
+						<tfoot id="footer_dem">
+						
+						</tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>	
+				
+				
+				
+			<!-- CUMUL DEPUIS LE DEBUT DE SEMAINE -->	
+			<div class="x_panel">
+                  <div class="x_title">
+                    <h2>Reporting <small>CUMUL DEPUIS LE DEBUT DE SEMAINE</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+							<th>Agence</th>
+							<th class="column-title">Nb de nouvelles demandes de prêt</th>
+							<th class="column-title">Nbr crédits décaissés</th>
+							<th class="column-title">Volume crédits décaissés	</th>
+							<th class="column-title">Montant moyen décaissé</th>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id='cumweek'>
+                        
+						<tr id="loadingcumweek"><td colspan="5"><center><img src="../../img/loading_report.gif"  alt="arobas" style="width:100px; height:100px;" /></center></td><tr>		
+                          
+                        </tbody>
+						<tfoot id="footer_cumweek">
+						
+						</tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>	
+
+			<!-- CUMUL DEPUIS LE DEBUT Du mois -->	
+			<div class="x_panel">
+                  <div class="x_title">
+                    <h2>Reporting <small>CUMUL DEPUIS LE DEBUT DU MOIS</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+							<th>Agence</th>
+							<th class="column-title">Nb de nouvelles demandes de prêt</th>
+							<th class="column-title">Nbr crédits décaissés</th>
+							<th class="column-title">Volume crédits décaissés	</th>
+							<th class="column-title">Montant moyen décaissé</th>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody id='cummonth'>
+                         
+                         <tr id="loadingcummonth"><td colspan="5"><center><img src="../../img/loading_report.gif"  alt="arobas" style="width:100px; height:100px;" /></center></td><tr>	 
+                        </tbody>
+						<tfoot id="footer_cummonth">
+						
+						</tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>					
+              </div>
+			 
+</body>
+</html>

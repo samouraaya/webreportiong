@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script>var s='6_DOC_crédit_à_maturité _';</script>
+	<style>
+	span.cellWithoutBackground
+{
+    display:block;
+    background-image:none;
+    margin-right:0px;
+    margin-left:0px;
+    height:100%;
+}
+ /* set the size of the datepicker search control for Order Date*/
+        #ui-datepicker-div { font-size:11px; }
+        .ui-datepicker { z-index: 2000 }
+        
+        /* set the size of the autocomplete search control*/
+        .ui-menu-item {
+            font-size: 11px;
+        }
+
+         .ui-autocomplete {
+            z-index: 2000;
+            font-size: 11px;
+        }  
+p {
+      visibility:hidden;
+}		
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }	
+ </style>
+<img src="ajax-loader.gif" class="displayed" style="position:relative;" id="load" width="50px" height="50px"/>
+<script>
+$(document).ready(function(){
+
+    $("legend").hide();
+});
+$(document).load(function(){
+    $("#load").append('loaded');
+});
+$(document).ready(function(){
+
+    $("#load").hide();
+});
+$(document).ready(function(){
+
+    $("legend").show();
+});
+</script> 
+</head>
+
+<body>
+<div id="row1">
+<script>var s='6_DOC_crédit_à_maturité _';</script>
+    <center><table id="jqGrid" ></table></center>	</div>
+    <div id="jqGridPager" style="position:relative;"></div>
+	
+<script type="text/javascript"> 	
+$(document).ready(function () {
+	
+	var agence = sessionStorage.getItem("agence"); 
+
+		$("#jqGrid").jqGrid({
+		url: "../controller/api/fn_maturite_40?agence="+agence,
+		datatype: "json",
+		 colModel: [
+			{ label: 'RSM',width:150,align:"center", name: 'RSM',sorttype:"string",stype: "select", searchoptions:{dataUrl:'../controller/rsm.php'}},
+			{ label: 'RIM',width:30,align:"center", name: 'rim',sorttype: 'integer'},
+			{ label: 'Client',width:150,align:"center", name: 'NomCLT'},
+			{ label: 'Num Tel',align:"center", name: 'produit' },
+			{ label: 'Cycle',width:50,align:"center", name: 'cycle' },
+			{ label: 'Montant',width:50,align:"center", name: 'amt_financed',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:" ", thousandsSeparator: " ", decimalPlaces: 0}},
+			{ label: 'Date décaissement',width:150,align:"center", name: 'duree',sorttype: "date",searchoptions: {
+                            // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
+                            // use it to place a third party control to customize the toolbar
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    //minDate: new Date(2010, 0, 1),
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+                            }
+                        }, formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+			{ label: 'Echéance actuelle',align:"center",width:100, name: 'decaissement'},
+			{ label: 'Reste à Payer',align:"center", name: 'Mat',sorttype: 'integer',formatter:'integer', formatoptions:{decimalSeparator:".", thousandsSeparator: " ", decimalPlaces: 3}},
+			{ label: 'Date Maturité ',align:"center", name: 'EncCap',searchoptions: {
+                            // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
+                            // use it to place a third party control to customize the toolbar
+                            dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'orderDate_datePicker',
+                                    dateFormat: 'dd/mm/yy',
+                                    //minDate: new Date(2010, 0, 1),
+                                    maxDate: new Date(2020, 0, 1),
+                                    showOn: 'focus'
+                                });
+                            }
+                        }, formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+			{ label: 'Nombre Max J retard', name: 'retard',align:"center",sorttype: 'integer',formatter:'integer'},              
+		],
+		pgbuttons: false,     // disable page control like next, back button
+		pgtext: false, 
+		viewrecords: true, 
+		autowidth:true,
+		height: 490,
+		rowNum: 1000,
+		loadonce: true,
+		pager: "#jqGridPager",
+		footerrow: false,
+			  loadComplete: function () {
+                    var $self = $(this),
+                        sum1 = $self.jqGrid("getCol", "EncCap", false, "sum");
+						sum2 = $self.jqGrid("getCol", "amt_financed", false, "sum");
+						
+						sum1=parseFloat(sum1);
+						sum2=parseInt(sum2);
+						
+                    $self.jqGrid("footerData", "set", {produit: "Total :",amt_financed: sum2, EncCap: sum1});
+					
+                }
+              
+				
+	});
+	$("#jqGrid").jqGrid('navGrid','#jqGridPager',{add:false,del:false,edit:false,search:true,refresh:false},
+                        {},{},{},{multipleSearch:true});
+	
+	
+						
+		setPrintGrid('jqGrid','jqGridPager','Print');setExportGrid('jqGrid','jqGridPager','Export');
+		
+        });
+
+
+
+ </script>
+ <br>
+<div id='prt-container' ><p> Crédit à maturité </p><br></div></div>
+
+</body>
+</html>

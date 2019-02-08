@@ -1,0 +1,368 @@
+<html lang="en">
+<head>
+	<script type="text/javascript"  src="../../js/graph_dg.js"></script>
+	<!--<script type="text/javascript"  src="../../js/custom_graph.js"></script>-->
+</head>	
+
+<body>
+<div class="col-md-12">	
+<div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Graphique flux decaissement</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="true">Graphique Encours</a>
+                        </li>
+						
+                        <li class="dropdown" role="presentation" >
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Graphique PAR <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="true">Historique PAR par agence</a></li>
+						<li><a href="#tab_content4" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="true">Historique PAR par Genre</a></li>
+						<li><a href="#tab_content5" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="true">Historique PAR par SIC</a></li> 
+						</ul>
+                        </li>
+                      </ul>
+                      <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="totalvl" style="height: 300px; width: 100%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="totalnb" style="height: 300px; width: 100%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="container" style="height: 300px; width: 100%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="decnb" style="height: 300px; width: 100%;"></div>
+							</div>
+							</div>
+							</div>				
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="produit" style="height: 300px; width: 100%;"></div>
+							</div>
+							</div>
+							</div>	
+							</div>
+						
+						<!--Graphique Encours-->
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="Outstandingvl" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="Outstandingnb" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="Outstandingvlbr" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="Outstandingnbbr" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="OutstandingCLS" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="OutstandingCLSvl" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							</div>
+							<!--Graphique PAR AGENCE-->	
+							<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR0VLBranch" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR0NBBranch" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR30VLBranch" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR30NBBranch" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR90VLBranch" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR90NBBranch" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							</div>
+							<!--Graphique PAR GENRE-->	
+							<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab3">
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR0PERSEX" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR30PERSEX" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR90PERSEX" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							</div>
+							<!--Graphique PAR SIC-->	
+							<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab4">
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR0PERSIC" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR30PERSIC" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							<div class="col-md-6">	
+							<div class="x_panel">
+							<div class="x_title">
+							<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							</ul>
+							<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+							<div id="PAR90PERSIC" style="height: 300px; width: 46%;"></div>
+							</div>
+							</div>
+							</div>
+							</div>
+                      </div>
+                    </div>
+</div>
+
+</body>
+</html>
